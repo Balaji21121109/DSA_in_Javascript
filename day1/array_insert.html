@@ -13,12 +13,42 @@
 
 <script>
 
-    var data = [60,30,3,9,10,50]
-    var newar = 70;
-    var position = 3;
+    // var data = [60,30,3,9,10,50]
+    // var newar = 70;
+    // var position = 3;
 
-    for(var i=data.length;i>0;i++){
-        console.log(data[i])
+    // for(var i=data.length;i>0;i++){
+    //     console.log(data[i])
+    // }
+
+    // var arr = [12,3,1,2,34,5]
+    // var newvalue = 99;
+    // var position = 2;
+    // //console.log(position)
+    // for(var i=arr.length-1;i>=0;i--){
+    //     //console.log(arr[i])
+    //     if(i>=position){
+    //         arr[i+1]=arr[i];
+    //         if(i==position){
+    //             arr[i]=newvalue
+    //         }
+    //     }
+    // }
+    // console.log(arr)
+
+var data = [1,23,55,67,99,22,44,56]
+var newval = 23;
+var position = 0;
+
+for(var i=data.length-1;i>=0;i--){
+ if(i>=position){
+    data[i+1]=data[i]
+    if(i==position){
+        data[i]=newval
     }
+ }
+
+}
+console.log(data)
 
 </script>
