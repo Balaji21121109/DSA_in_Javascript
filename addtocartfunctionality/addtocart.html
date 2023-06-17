@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% comment %}=================================products variants loop==========================    {% endcomment %}
+            <div class="badge_product">
+               {% for tag in card_product.tags %}
+               {% if tag contains 'badge_' %}
+               {% assign product_badge = tag | split: '_' | last %}
+               {% endif %}
+               {% endfor %}
+               {% if product_badge != blank %}
+                 
+               <div class="badge_text">
+                  
+                  <p class="badge">{{ product_badge }} </p>
+               </div>
+               {% endif %} 
+            </div>
+
+{% comment %}=================================products variants loop==========================    {% endcomment %}
+      <div class="card__content">
+        <div class="card__information aa">
+   <div>{{ card_product.price | money_without_trailing_zeros }}</div> 
+    
+         {% comment %}=================================products variants loop==========================    {% endcomment %}
+<div class="variants_add_to_cart">
+  <div class="variants_loop">
+    <div class="select-wrapper">
+      <select name="weight" class="select_item">
+        {% for option in card_product.options_with_values %}
+          {% if option.name == 'Weight' or option.name == 'Size' or option.name == 'weight' or option.name == 'Pieces' or option.name == 'Egg or Eggless' or option.name == 'Egg'  %}
+            {% for value in option.values %}
+              {% for variant in card_product.variants %}
+                {% if variant.option1 == value %}
+                  <option value="{{ value }}" data-variant-id="{{ variant.id }}">{{ value }}</option>
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  <button
+    type="button"
+    name="add"
+    class="product-form__submit add_to_cart_button button--secondary button--primary"
+    onclick="addToCart(this)"
+  >
+    ADD
+  </button>
+</div>
+    {% comment %}=================================products variants loop end==========================    {% endcomment %}
+
+
+</body>
+</html>
