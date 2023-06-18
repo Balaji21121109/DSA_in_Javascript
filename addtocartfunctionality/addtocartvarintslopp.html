@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        {% comment %}=================================products variants loop==========================    {% endcomment %}
+            <div class="badge_product">
+               {% for tag in card_product.tags %}
+               {% if tag contains 'badge_' %}
+               {% assign product_badge = tag | split: '_' | last %}
+               {% endif %}
+               {% endfor %}
+               {% if product_badge != blank %}
+               <div class="badge_wrapper">
+                  
+                  <p class="badge_text">{{ product_badge }} </p>
+               </div>
+               {% endif %} 
+            </div>
+
+{% comment %}=================================products variants loop==========================    {% endcomment %}
+      <div class="card__content">
+        <div class="card__information aa">
+   <div class="price_of_product">{{ card_product.price | money_without_trailing_zeros }}</div> 
+    
+         {% comment %}=================================products variants loop==========================    {% endcomment %}
+<div class="variants_add_to_cart">
+  <div class="variants_loop">
+    <div class="select-wrapper">
+      
+      <select name="weight" class="select_item">
+        {% for option in card_product.options_with_values %}
+          {% if option.name == 'Weight' or option.name == 'Size' or option.name == 'weight' or option.name == 'Pieces' or option.name == 'Egg or Eggless' or option.name == 'Egg'  %}
+            {% for value in option.values %}
+              {% for variant in card_product.variants %}
+                {% if variant.option1 == value %}
+                  <option value="{{ value }}" data-variant-id="{{ variant.id }}">{{ value }}</option>
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      </select>
+
+    </div>
+  </div>
+  <button
+    type="button"
+    name="add"
+    class="product-form__submit add_to_cart_button button--secondary button--primary"
+    onclick="addToCart(this)"
+  >
+    ADD
+  </button>
+</div>
+    {% comment %}=================================products variants loop end==========================    {% endcomment %}
+
+
+          
+  <h3
+            class="card__heading title_for_product{% if card_product.featured_media or settings.card_style == 'standard' %} h5{% endif %}"
+            {% if card_product.featured_media or settings.card_style == 'card' %}
+              id="title-{{ section_id }}-{{ card_product.id }}"
+            {% endif %}
+          >
+          
+              {{ card_product.title | escape }}
+    
+          </h3>
+  
+    </div>
+
+</body>
+</html>
+<script>
+    ////////////////////////////////////// add to cart///////////
+   function addToCart(button) {
+    var selectElement = button.previousElementSibling.querySelector('select');
+    var selectedOption = selectElement.options[selectElement.selectedIndex];
+    var variantId = selectedOption.dataset.variantId;
+
+    // Create a form element to submit the variant ID
+    var form = document.createElement('form');
+    form.method = 'POST';
+    form.action = '/cart/add';
+
+    // Add the variant ID as a hidden input field
+    var variantInput = document.createElement('input');
+    variantInput.type = 'hidden';
+    variantInput.name = 'id';
+    variantInput.value = variantId;
+
+    // Append the input field to the form
+    form.appendChild(variantInput);
+
+    // Append the form to the document and submit it
+    document.body.appendChild(form);
+    form.submit();
+  }
+
+</script>
