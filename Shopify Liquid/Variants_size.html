@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<div class="pic_your_size_div" style="color:black;">
+    <div class="variant_sizes">
+       {% for option in product.options_with_values %}
+       {% if option.name == 'Size' %} 
+       {% if option.name != blank %}
+       <label class="varient_name_size">{{ option.name }} </label>
+       <div class="variants_flexing">
+          {%for value in option.values%}
+          <div class="main_input_tag">
+             <input
+             id={{ "size" | append: forloop.index }}
+             type="radio"
+             name="properties[size]"
+             value="{{ value }}"
+             data-size_pcp="{{ section.settings.size_char_price_1 }}"
+             data-size_bp="{{ section.settings.size_base_price_1 }}"
+             class="size_btn_input"
+             checked="checked"
+             >
+             <label for={{  "size" | append: forloop.index  }} class="{{  "size" | append: forloop.index  }} size_btn 1size_btn_without_HW active_class input_tag_border">
+             <p>
+                <span class="heading_size_item">{{ value }}</span>
+             </p>
+             {% assign some = forloop.index %}
+             {% for variant in product.variants%}
+             {% assign variant_sizes = variant.metafields.custom.size_options %}
+             {% assign variant_item = variant_sizes  | split: "|" %}
+             {% if forloop.index == some %}
+             <div class="flexng_sizes">
+                <div class="class_width size_for_width">
+                   <div class="image_text_block width_for_top_flex">
+                      <span id="size1_width" class="size_width">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="6" viewBox="0 0 17 6" fill="none">
+                            <path d="M0.717157 2.71716C0.560948 2.87337 0.560948 3.12663 0.717157 3.28284L3.26274 5.82843C3.41895 5.98464 3.67222 5.98464 3.82843 5.82843C3.98464 5.67222 3.98464 5.41895 3.82843 5.26274L1.56569 3L3.82843 0.737258C3.98464 0.581048 3.98464 0.327783 3.82843 0.171573C3.67222 0.0153632 3.41895 0.0153632 3.26274 0.171573L0.717157 2.71716ZM16.2828 3.28284C16.4391 3.12663 16.4391 2.87337 16.2828 2.71716L13.7373 0.171573C13.581 0.0153632 13.3278 0.0153632 13.1716 0.171573C13.0154 0.327783 13.0154 0.581048 13.1716 0.737258L15.4343 3L13.1716 5.26274C13.0154 5.41895 13.0154 5.67222 13.1716 5.82843C13.3278 5.98464 13.581 5.98464 13.7373 5.82843L16.2828 3.28284ZM1 3.4H16V2.6H1V3.4Z" fill="black">
+                            </path>
+                         </svg>
+                      </span>
+                      <span class="size_of_width">{{ variant_item[0] | remove: '[' | remove: ']' | remove: '"'  }} </span>
+                   </div>
+                   <p class="width_top">Width</p>
+                </div>
+                <div  class="class_width size_for_height">
+                   <div class="image_text_block">
+                      <span id="size1_height" class="size_height">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="6" height="17" viewBox="0 0 6 17" fill="none">
+                            <path d="M2.71716 16.2828C2.87337 16.4391 3.12663 16.4391 3.28284 16.2828L5.82843 13.7373C5.98464 13.581 5.98464 13.3278 5.82843 13.1716C5.67222 13.0154 5.41895 13.0154 5.26274 13.1716L3 15.4343L0.737258 13.1716C0.581048 13.0154 0.327783 13.0154 0.171573 13.1716C0.0153632 13.3278 0.0153632 13.581 0.171573 13.7373L2.71716 16.2828ZM3.28284 0.717157C3.12663 0.560947 2.87337 0.560947 2.71716 0.717157L0.171573 3.26274C0.0153632 3.41895 0.0153632 3.67222 0.171573 3.82843C0.327783 3.98464 0.581048 3.98464 0.737258 3.82843L3 1.56569L5.26274 3.82843C5.41895 3.98464 5.67222 3.98464 5.82843 3.82843C5.98464 3.67222 5.98464 3.41895 5.82843 3.26274L3.28284 0.717157ZM3.4 16L3.4 1H2.6L2.6 16H3.4Z" fill="black">
+                            </path>
+                         </svg>
+                      </span>
+                      <span class="size_of_width">{{ variant_item[1] | remove: '[' | remove: ']' | remove: '"'   }} </span>
+                   </div>
+                   <p>height</p>
+                </div>
+             </div>
+             {% endif %}
+             {% endfor %}
+             </label>
+          </div>
+          {% endfor %}
+       </div>
+       {% endif %}                  
+       {% endif %}
+       {% endfor %}
+    </div>
+ </div>
+ 
+</body>
+</html>
