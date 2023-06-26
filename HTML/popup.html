@@ -24,18 +24,9 @@
       border: none;
       cursor: pointer;
     }
-  </style>
-</head>
-<body>
-  <button class="button" onclick="openPopup()">Open Popup</button>
-  
-  <div id="popup" class="popup">
-    <h2>Popup Content</h2>
-    <p>This is the content of the popup.</p>
-    <button class="button" onclick="closePopup()">Close</button>
-  </div>
 
-  <script>
+  </style>
+   <script>
     function openPopup() {
       var popup = document.getElementById("popup");
       popup.style.display = "block";
@@ -46,5 +37,16 @@
       popup.style.display = "none";
     }
   </script>
+</head>
+<body>
+  <button class="button" onclick="openPopup()">Open Popup</button>
+  
+  <div id="popup" class="popup">
+    <h2>Popup Content</h2>
+    <p>This is the content of the popup.</p>
+    <button class="button" onclick="closePopup()">Close</button>
+  </div>
+
+ 
 </body>
 </html>
