@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {{ "new-neonattack.css" | asset_url | stylesheet_tag }}
+    <style>
+        @media only screen and (max-width: 5000px) and (min-width: 993px) {
+            #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion {
+                display: none;
+           }
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq {
+            padding: 25px 20px 25px 0px;
+            border-bottom: 1px solid #c9d4c5;
+       }
+        @media screen and (max-width: 991px) {
+            #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq {
+                padding: 20px 0px;
+           }
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq a {
+            position: relative;
+            display: block;
+            padding-right: 60px;
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-family: "MontserratSemiBold";
+            transition: .3s ease;
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq a.active {
+            opacity: 1;
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq a i {
+            color: #fff;
+            z-index: 1;
+            position: absolute;
+            right: 0;
+            top: 0;
+       }
+        @media screen and (max-width: 991px) {
+            #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq a i {
+                right: 10px;
+           }
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content {
+            display: none;
+            padding-top: 10px;
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .product_box {
+            width: 100%;
+            padding: 15px 0;
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .product_box .text_reg {
+            font-size: 16px;
+            padding-right: 0;
+            line-height: 22px;
+       }
+        @media screen and (max-width: 767px) {
+            #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .product_box .text_reg {
+                padding-right: 0;
+                text-align: center;
+           }
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .product_box .product_img_text {
+            display: flex;
+       }
+        @media screen and (max-width: 767px) {
+            #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .product_box .product_img_text {
+                align-items: center;
+           }
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .product_box .product_img_text .product_img {
+            width: 30%;
+            position: relative;
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .product_box .product_img_text .product_img .gif {
+            z-index: 1;
+            position: relative;
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .product_box .product_img_text .product_img .why_bg {
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .product_box .product_img_text .product_text {
+            width: 100%;
+            padding-left: 10px;
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .product_box .product_img_text .product_text .text_md {
+            margin: 0;
+            color: #16DE7E;
+            font-size: 18px;
+            line-height: 24px;
+            font-family: "MontserratSemiBold";
+            padding-bottom: 5px;
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .product_box .product_img_text .product_text .text_md span {
+            display: block;
+       }
+        @media screen and (max-width: 992px) {
+            #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .product_box .product_img_text .product_text .text_md span {
+                display: inline-block;
+           }
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .product_box .product_img_text .product_text .text_reg {
+            margin: 0;
+            text-align: left;
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail {
+            padding: 10px 50px;
+       }
+        @media screen and (max-width: 992px) {
+            #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail {
+                padding: 15px 0;
+           }
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .text_xl {
+            margin: 0;
+       }
+        @media only screen and (max-width: 992px) and (min-width: 768px) {
+            #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .text_xl {
+                line-height: 35px;
+           }
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .text_reg {
+            margin-top: 10px;
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .about_box {
+            display: flex;
+            margin-left: -20px;
+            align-items: center;
+       }
+        @media screen and (max-width: 992px) {
+            #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .about_box {
+                flex-wrap: wrap;
+           }
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .about_box .new-box {
+            display: flex;
+            align-items: center;
+       }
+        @media screen and (max-width: 767px) {
+            #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .text_xl, #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .text_md {
+                font-size: 18px;
+           }
+            #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .text_reg, #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .guide .text_md{
+                font-size: 16px;
+           }
+            #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .about_box .new-box {
+                width: 100%;
+           }
+       }
+        @media only screen and (max-width: 992px) and (min-width: 768px) {
+            #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .about_box .new-box {
+                width: 50%;
+           }
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .about_box .new-box .box_text {
+            padding-right: 30px;
+            border-right: 2px solid #888A92;
+       }
+        @media screen and (max-width: 992px) {
+            #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .about_box .new-box .box_text {
+                border: 0;
+           }
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .about_box .new-box .box_text.border0 {
+            border-right: 0;
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .about_box .new-box .box_text .text_md {
+            margin: 0;
+            font-family: "MontserratMedium";
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .about_box .new-box .box_text .text_reg {
+            margin: 0;
+            font-size: 15px;
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .guide {
+            display: flex;
+            margin-left: -20px;
+            align-items: center;
+            flex-wrap: wrap;
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .guide .new-box {
+            width: 50%;
+            display: flex;
+            align-items: center;
+       }
+        @media screen and (max-width: 992px) {
+            #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .guide .new-box {
+                width: 100%;
+                padding-bottom: 0;
+           }
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .guide .new-box .box_img {
+            width: 20%;
+       }
+        @media screen and (max-width: 767px) {
+            #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .guide .new-box:not(:first-child) {
+                margin-top: -2rem;
+           }
+            #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .guide .new-box .box_img {
+                width: 30%;
+           }
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .guide .new-box .box_text {
+            width: 80%;
+            padding-right: 30px;
+       }
+        @media screen and (max-width: 767px) {
+            #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .guide .new-box .box_text {
+                width: 70%;
+                padding-right: 0;
+           }
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .guide .new-box .box_text .text_md {
+            margin: 0;
+            font-family: "MontserratMedium";
+       }
+        @media screen and (max-width: 767px) {
+            #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .guide .new-box .box_text .text_md {
+                font-size: 16px;
+                line-height: 24px;
+                font-family: "MontserratLight";
+           }
+       }
+        #shopify-section-New-NeonAttack-Normal-html-Content .product .accordion .faq_main_content .set_faq .content .products_detail .guide .new-box .box_text .text_reg {
+            margin: 0;
+            font-size: 15px;
+       }
+        #everyone_slider .product-card, #the_neon_slider .product-card{
+            width:240px;
+            margin: 0 auto 15px !important;
+       }
+        #everyone_slider .grid--uniform, #the_neon_slider .grid--uniform{
+            margin-bottom: 35px !important;
+            display: flex;
+            overflow-x: scroll;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+            -webkit-overflow-scrolling: touch;
+            white-space: nowrap;
+       }
+        .everyone_main .nav-prev, .the_neon .nav-prev{
+            padding:8px 14px;
+            position: absolute;
+            left: -95px;
+            top: 50%;
+            background: transparent;
+            appearance: none;
+            border: 2px solid #D0FF00;
+            color: #000;
+            border-radius: 30px;
+            background: #D0FF00;
+       }
+        .everyone_main .nav-next, .the_neon .nav-next{
+            padding:8px 14px;
+            position: absolute;
+            right: -58px;
+            top: 48%;
+            background: transparent;
+            appearance: none;
+            border: 2px solid #D0FF00;
+            color: #000;
+            border-radius: 30px;
+            background: #D0FF00;
+       }
+        @media(max-width:767px){
+            #everyone_slider .grid--uniform::-webkit-scrollbar, #the_neon_slider .grid--uniform::-webkit-scrollbar {
+                width: 0 !important;
+                height: 0px!important;
+           }
+            #everyone_slider .product-card, #the_neon_slider .product-card{
+                width:140px;
+           }
+            #everyone_slider .grid--uniform, #the_neon_slider .grid--uniform{
+                margin-left: 5px;
+           }
+            #everyone_slider .nav-prev, #the_neon_slider .nav-prev, #everyone_slider .nav-next, #the_neon_slider .nav-next {
+                display:none !important;
+           }
+       }
+        #product_details .product .product_tab .products .products_wrapper .product_box .product_img_text .product_img .gif{
+            width:50%;
+            margin: 0 auto;
+       }
+        #product_details .product .product_tab .products .products_wrapper .product_box:nth-child(4) .product_img_text .product_img .gif, #product_details .product .product_tab .products .products_wrapper .product_box:nth-child(7) .product_img_text .product_img .gif {
+            width:35%;
+       }
+        #product_details .product .product_tab .products .products_wrapper .product_box .product_img_text .product_img .why_bg{
+            opacity:50%;
+       }
+        @media(max-width:767px){
+            #product_details .product .accordion .faq_main_content .set_faq .content .product_box .product_img_text .product_img .why_bg{
+                opacity:50%;
+           }
+            #product_details .product .accordion .faq_main_content .set_faq .content .product_box:nth-child(4) .product_img_text .product_img .img, #product_details .product .accordion .faq_main_content .set_faq .content .product_box:nth-child(7) .product_img_text .product_img .img {
+                width:35%;
+           }
+       }
+       
+       
+         
+       </style>
+         
+         
+</head>
+<body>
+    
+
+
+<main id="product_details">
+  
+   <section class="product animaction_top product_tab_main_container" data-scroll>
+      <div class="container product_tabs_desktop">
+         <div class="product_tab small--hide">
+            <div class="button_section">
+               <h5>
+                  <span class="text_md active" data-id="1">Description</span>
+                  <span class="text_md" data-id="2">What’s in the box?</span>
+                  <span class="text_md" data-id="3">How to Install?</span>
+                  <span class="text_md " data-id="4">Shipping Info</span>
+               </h5>
+            </div>
+            <div class="products" id="1">
+               <div class="products_wrapper product_wrapper_background">
+                  <div class="products_detail">
+                     <!--               <h4 class="text_xl">About your neon sign</h4> -->
+                     <div class="product_tab_description">
+                        <p class="text_reg ">{{ product.metafields.custom.product_meta | metafield_tag}}</p>
+                        <div class="metafiel_image">
+                           <img data-src="{{  product.metafields.custom.image_product  | img_url:'master'  }}" alt="weight" class="lazyload img-responsive">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="products" id="2">
+               <div class="products_wrapper ">
+                  <div class="products_detail inside_box_flex">
+                     <div class="whats_in_box">
+                        <p class="text_reg product_tab_text">{{ section.settings.box_title_text }}</p>
+                        <p class="text_reg product_tab_text">{{ section.settings.box_title_richtext }}</p>
+                     </div>
+                     <div class="metafiel_image">
+                        <img data-src="{{ section.settings.product_image | img_url:'master'  }}" alt="weight" class="lazyload img-responsive">
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="products" id="3">
+               <div class="products_wrapper product_wrapper_background">
+                  <div class="products_detail inside_box_flex">
+                     <div class="whats_in_box">
+                        <p class="text_xl install_heading_text">{{ section.settings.install_title_text }}</p>
+                        <div class="installation_richtext">
+                           <p>{{ section.settings.install_title_richtext }}</p>
+                        </div>
+                     </div>
+                     <div class="metafiel_image">
+                        <img data-src="{{ section.settings.install_image | img_url:'master'  }}" alt="weight" class="lazyload img-responsive">
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="products" id="4">
+         <div class="products_wrapper product_wrapper_background">
+            <div class="shipping_info">
+               {{ section.settings.shipping_text }}
+            </div>
+         </div>
+      </div>
+      </div>
+      <div class="accordion medium-up--hide">
+         <div class="faq_main_content mobile_design">
+            <div class="set_faq">
+               <details class="para details_mobile" href="javascript:void(0)">
+                  <summary class="summary mobile_summary">
+                     <span>Description</span> 
+                     <span class="summary-svg"></span>
+                  </summary>
+                  <div class="product__description mobile_product_description">
+                     <p class="text_reg ">{{ product.metafields.custom.product_meta | metafield_tag}}</p>
+                     <div class="metafiel_image">
+                        <img data-src="{{  product.metafields.custom.image_product  | img_url:'master'  }}" alt="weight" class="lazyload img-responsive">
+                     </div>
+                  </div>
+            </div>
+            </details>
+            <div class="set_faq">
+               <details class="para details_mobile" href="javascript:void(0)">
+                  <summary class="summary mobile_summary">
+                     <span>What’s in the box?</span> 
+                     <span class="summary-svg"></span>
+                  </summary>
+                  <div class="whats_in_box">
+                     <p class="text_reg product_tab_text">{{ section.settings.box_title_text }}</p>
+                     <p class="text_reg product_tab_text">{{ section.settings.box_title_richtext }}</p>
+                  </div>
+                  <div class="metafiel_image">
+                     <img data-src="{{ section.settings.product_image | img_url:'master'  }}" alt="weight" class="lazyload img-responsive">
+                  </div>
+               </details>
+            </div>
+            <div class="set_faq">
+               <details class="para details_mobile" href="javascript:void(0)">
+                  <summary class="summary mobile_summary">
+                     <span>How to Install? </span> 
+                     <span class="summary-svg"></span>
+                  </summary>
+                  <div class="whats_in_box">
+                     <h4 class="text_xl">{{ section.settings.install_title_text }}</h4>
+                     <div class="installation_richtext">
+                        <p>{{ section.settings.install_title_richtext }}</p>
+                     </div>
+                  </div>
+                  <div class="metafiel_image">
+                     <img data-src="{{ section.settings.install_image | img_url:'master'  }}" alt="weight" class="lazyload img-responsive">
+                  </div>
+               </details>
+            </div>
+            <div class="set_faq">
+               <details class="para details_mobile"  href="javascript:void(0)" class="active">
+                  <summary class="summary mobile_summary">
+                     <span>Shipping Info</span> 
+                     <span class="summary-svg"></span>   
+                     </a>
+                  </summary>
+                  <div class="product_text">
+                     <div class="shipping_info">
+                        <p class="text_reg product_tab_text">{{ section.settings.shipping_text }} </p>
+                     </div>
+                  </div>
+               </details>
+            </div>
+         </div>
+      </div>
+      </div>
+     
+   </section>
+   {%- for block in section.blocks -%}
+   {%- if block.type == "everyone-vibin" -%}
+   <section class="everyone_main">
+      <div class="everyone_bg_width"></div>
+      <div class="container right-zero">
+         <div class="everyone_txt">
+            <h2 class="section_title blue_color animaction_top" data-scroll>{{block.settings.title_text}}</h2>
+            <p class="para animaction_top" data-scroll>{{block.settings.sub_title_text}} </p>
+         </div>
+         <div class="everyone_flex animaction_top" data-scroll id="everyone_slider">
+            <div class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
+               <div class="nav-prev arrow" style="display: none;"><i class="fas fa-chevron-left"></i></div>
+               {%- for product in  block.settings.col-vib.products -%}
+               <div class="grid__item grid__item--{{section.id}} small--one-half medium-up--one-quarter">
+                  {% include 'product-card-grid' %}
+               </div>
+               {%- endfor -%}
+               <div class="nav-next arrow" style=""><i class="fas fa-chevron-right"></i></div>
+            </div>
+         </div>
+         <div class="everyone_btn animaction_top" data-scroll>
+            <a href="{{block.settings.vibin_shop_all}}" class="cmn_btn">Shop All</a>
+         </div>
+      </div>
+   </section>
+   {%- endif -%}
+   {%-endfor-%}
+   {%- for block in section.blocks -%}
+   {%- if block.type == "neon-sign-for-you" -%}
+   <section class="the_neon">
+      <div class="everyone_bg_width"></div>
+      <div class="container right-zero">
+         <div class="everyone_wrapper">
+            <div class="everyone_txt">
+               <h2 class="section_title blue_color animaction_top" data-scroll>{{block.settings.neon-sign_title}}</h2>
+               <h2 class="section_title blue_color animaction_top" data-scroll>{{block.settings.neon-sign_sub_title}}</h2>
+            </div>
+            <div class="everyone_txt">
+               <p class="para animaction_top" data-scroll>{{block.settings.neon-sign_para}}</p>
+            </div>
+         </div>
+         <div class="everyone_flex animaction_top" data-scroll id="the_neon_slider">
+            <div class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
+               <div class="nav-prev arrow" style="display: none;"><i class="fas fa-chevron-left"></i></div>
+               {%- for product in  block.settings.col-neon-sign.products -%}
+               <div class="grid__item grid__item--{{section.id}} small--one-half medium-up--one-quarter">
+                  {% include 'product-card-grid' %}
+               </div>
+               {%- endfor -%}
+               <div class="nav-next arrow" style=""><i class="fas fa-chevron-right"></i></div>
+            </div>
+         </div>
+         <div class="everyone_btn animaction_top" data-scroll>
+            <a href="{{block.settings.col-neon_shop_all}}" class="cmn_btn">Shop All</a>
+         </div>
+      </div>
+   </section>
+   {%- endif -%}
+   {%-endfor-%}
+   {%- for block in section.blocks -%}
+   {%- if block.type == "customize_section" -%}
+   <section class="customize_section">
+      <div class="container">
+         <div class="Customize_flex d_f">
+            <div class="customize_img">
+               <img data-src="//cdn.shopify.com/s/files/1/0460/2753/8595/files/laptop_guy.png" class="lazyload img-responsive boy_img animaction_right_left" data-scroll alt="">
+               <img class="img-responsive path_one animaction_left_right" data-scroll src="//cdn.shopify.com/s/files/1/0460/2753/8595/files/path_one.png" alt="">
+            </div>
+            <div class="customize_context">
+               <h2 class="section_title yellow_color animaction_top" data-scroll>{{block.settings.cust_title}}</h2>
+               <p class="para animaction_top" data-scroll>Be it your name, a cheesy quote or yet another line from
+                  F.R.I.E.N.D.S; the options are unlimited when you become the creator of your own neon sign.
+               </p>
+               <p class="para animaction_top" data-scroll>Simply type your text, select the font, colour and size to create your own sign.</p>
+               <div class="customize_btn animaction_top" data-scroll>
+                  <a href="{{block.settings.cust_shop_all}}" class="cmn_btn">Customise your Sign</a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   {%- endif -%}
+   {%-endfor-%}
+     
+   <section class="faq_main faq_section_main faq_bottom_padding">
+      <div class="faq_ellipse_four position_a">
+      </div>
+      <div class="container">
+         <div class="faq_title animaction_top" data-scroll>
+            <h2 class="section_title faq_question">Frequently Asked Questions</h2>
+         </div>
+        {%- if product.metafields.custom.question != blank -%}
+         <div class="faq_main_content faq_container">
+  {% for question in product.metafields.custom.question.value %}
+     {%- assign index = forloop.index -%}
+     {%- for answer in product.metafields.custom.answer.value -%}
+         {%- if forloop.index == index -%}
+            <div class="set_faq animaction_top" data-scroll>
+               <details class="para active faq_flex_item" class="active">
+                  <summary class="summary">
+                     <span>{{ question }}</span>
+                     <span class="summary-svg"></span>
+                  </summary>
+                  <div class="faq_answers">{{ answer }}</div>
+               </details>
+            </div>
+           {% endif %}
+       {% endfor %}
+            {% endfor %}
+         </div>
+          {% endif %}
+      </div>
+      {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, product: product %}
+   </section>
+</main>
+
+{% schema %}
+{
+  "name": "New Normal Sign",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Product Description"
+    },
+    {
+      "type": "header",
+      "content": "What’s in the box?"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Image Description"
+    },
+    {
+      "type": "text",
+      "id": "box_title_text",
+      "label": "Box Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "box_title_richtext",
+      "label": "Box Description"
+    },
+    {
+      "type": "header",
+      "content": "How to install it?"
+    },
+    {
+      "type": "text",
+      "id": "install_title_text",
+      "label": "Install Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "install_title_richtext",
+      "label": "Install Description"
+    },
+    {
+      "type": "image_picker",
+      "id": "install_image",
+      "label": "Installation image"
+    },
+    {
+      "type": "header",
+      "content": "Shipping Info"
+    },
+    {
+      "type": "richtext",
+      "id": "shipping_text",
+      "label": "Shopping Info"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Product-Description",
+      "name": "Product Description",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "product_image_description",
+          "label": "Image"
+        },
+        {
+          "type": "richtext",
+          "id": "product_description",
+          "label": "Description"
+        }
+      ]
+    },
+    {
+      "type": "everyone-vibin",
+      "name": "Everyone Vibin Collection",
+      "settings": [
+        {
+          "type": "html",
+          "id": "title_text",
+          "default": "Everyone's <span>vibin'</span>",
+          "label": "Heading Title"
+        },
+        {
+          "type": "html",
+          "id": "sub_title_text",
+          "default": "Check out Neon Attack's current bestsellers:",
+          "label": "Sub Heading Title"
+        },
+        {
+          "type": "collection",
+          "id": "col-vib",
+          "info": "everyone vibin",
+          "label": "Add Collection"
+        },
+        {
+          "type": "url",
+          "id": "vibin_shop_all",
+          "label": "Shop all Link"
+        }
+      ]
+    },
+    {
+      "type": "neon-sign-for-you",
+      "name": "Neon Sign For You",
+      "settings": [
+        {
+          "type": "html",
+          "id": "neon-sign_title",
+          "default": "The neon",
+          "label": "Heading Title"
+        },
+        {
+          "type": "html",
+          "id": "neon-sign_sub_title",
+          "default": "<span>sign for you</span>",
+          "label": "Sub Heading Title"
+        },
+        {
+          "type": "html",
+          "id": "neon-sign_para",
+          "default": "Check out Neon Attack's current bestsellers:",
+          "label": "Paragraph"
+        },
+        {
+          "type": "collection",
+          "id": "col-neon-sign",
+          "info": "everyone vibin",
+          "label": "Add Collection"
+        },
+        {
+          "type": "url",
+          "id": "col-neon_shop_all",
+          "label": "Shop all Link"
+        }
+      ]
+    },
+    {
+      "type": "customize_section",
+      "name": "Customize Section",
+      "settings": [
+        {
+          "type": "html",
+          "id": "cust_title",
+          "default": "Customize <br> <span>your ideas</span>",
+          "label": "Heading Title"
+        },
+        {
+          "type": "url",
+          "id": "cust_shop_all",
+          "label": "Shop all Link"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "Faq Section",
+      "settings": [
+        {
+          "type": "text",
+          "id": "faq_question",
+          "label": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "faq_answer",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "New Normal Sign"
+    }
+  ]
+}
+{% endschema %}
+
+
+
+</body>
+</html>
