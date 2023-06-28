@@ -1,0 +1,155 @@
+
+<div class="collection_products">
+   
+    {% if collection.metafields.custom.recomended_products_ != blank %}
+    <h1>RECOMMENDATIONS</h1>
+        {% for product in collection.metafields.custom.recomended_products_.value %}
+            <div class="product">
+                <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}"/>
+               
+            </div>
+            <div class="price_of_product">{{ product.price | money_without_trailing_zeros }}</div> 
+            <div class="variants_add_to_cart">
+              <div class="variants_loop">
+                <div class="select-wrapper">
+                  
+                  <select name="weight" class="select_item">
+                    {% for option in product.options_with_values %}
+                      {% if option.name == 'Weight' or option.name == 'Size' or option.name == 'weight' or option.name == 'Pieces' or option.name == 'Egg or Eggless' or option.name == 'Egg'  %}
+                        {% for value in option.values %}
+                          {% for variant in product.variants %}
+                            {% if variant.option1 == value %}
+                              <option class="option_variant" value="{{ value }}" data-variant-id="{{ variant.id }}">{{ value }}</option>
+                              {% break %}
+                            {% endif %}
+                          {% endfor %}
+                        {% endfor %}
+                      {% endif %}
+                    {% endfor %}
+                  </select>
+            
+                </div>
+              </div>
+              <button
+                type="button"
+                name="add"
+                class="product-form__submit add_to_cart_button button--secondary button--primary add_btn"
+                onclick="addToCart(this)"
+              >
+                ADD
+              </button>
+            </div>
+            <h3
+          class="card__heading title_for_product{% if product.featured_media or settings.card_style == 'standard' %} h5{% endif %}"
+          {% if product.featured_media or settings.card_style == 'card' %}
+            id="title-{{ section_id }}-{{ product.id }}"
+          {% endif %}
+        >
+        
+            {{ product.title | escape }}
+  
+        </h3>
+
+        
+        <div class="quick-add no-js-hidden">
+          {%- assign product_form_id = 'quick-add-' | append: section_id | append: product.id -%}
+          {%- if product.variants.size == 1 -%}
+            <product-form>
+              {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                <input
+                  type="hidden"
+                  name="id"
+                  value="{{ product.selected_or_first_available_variant.id }}"
+                  disabled
+                >
+                <button
+                  id="{{ product_form_id }}-submit"
+                  type="submit"
+                  name="add"
+                  class="quick-add__submit quick_view_btn button--full-width button--secondary"
+                  aria-haspopup="dialog"
+                  aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ product.id }}"
+                  aria-live="polite"
+                  data-sold-out-message="true"
+                  {% if product.selected_or_first_available_variant.available == false %}
+                    disabled
+                  {% endif %}
+                >
+                  <span>
+                    {%- if product.selected_or_first_available_variant.available -%}
+                      {{ 'products.product.add_to_cart' | t }}
+                    {%- else -%}
+                      {{ 'products.product.sold_out' | t }}
+                    {%- endif -%}
+                  </span>
+                  <span class="sold-out-message hidden">
+                    {{ 'products.product.sold_out' | t }}
+                  </span>
+                  <div class="loading-overlay__spinner hidden">
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      role="presentation"
+                      class="spinner"
+                      viewBox="0 0 66 66"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                    </svg>
+                  </div>
+                </button>
+              {%- endform -%}
+            </product-form>
+          {%- else -%}
+            <modal-opener data-modal="#QuickAdd-{{ product.id }}">
+              <button
+                id="{{ product_form_id }}-submit"
+                type="submit"
+                name="add"
+                class="quick-add__submit quick_view_btn button--full-width button--secondary"
+                aria-haspopup="dialog"
+                aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ product.id }}"
+                data-product-url="{{ product.url }}"
+              >
+                {{ 'products.product.choose_options' | t }}
+                <div class="loading-overlay__spinner hidden">
+                  <svg
+                    aria-hidden="true"
+                    focusable="false"
+                    role="presentation"
+                    class="spinner"
+                    viewBox="0 0 66 66"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                  </svg>
+                </div>
+              </button>
+            </modal-opener>
+            <quick-add-modal id="QuickAdd-{{ product.id }}" class="quick-add-modal">
+              <div
+                role="dialog"
+                aria-label="{{ 'products.product.choose_product_options' | t: product_name: product.title | escape }}"
+                aria-modal="true"
+                class="quick-add-modal__content global-settings-popup"
+                tabindex="-1"
+              >
+                <button
+                  id="ModalClose-{{ product.id }}"
+                  type="button"
+                  class="quick-add-modal__toggle"
+                  aria-label="{{ 'accessibility.close' | t }}"
+                >
+                  {% render 'icon-close' %}
+                </button>
+                <div id="QuickAddInfo-{{ product.id }}" class="quick-add-modal__content-info"></div>
+              </div>
+            </quick-add-modal>
+          {%- endif -%}
+        </div>
+     
+        {% endfor %}
+    {% endif %}
+
+
+
