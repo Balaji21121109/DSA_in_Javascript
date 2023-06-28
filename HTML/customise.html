@@ -1,0 +1,32 @@
+<h5 class="font-22">SHIPPING INFORMATION</h5>
+<ul class="shipping-info-list">
+<li style="display:flex;">
+  <img src="{{ 'check-circle.png' | asset_url }}" alt="" style="width: 20px;height: 20px;margin-top: 6px;">
+  <div>✈ International Shipping. <a href="https://api.whatsapp.com/send?phone=916359945000&text=Hello%20there!" class="phone-number help-cta">☎ +916359945000</a></div>
+</li>
+<li><img src="{{ 'check-circle.png' | asset_url }}" alt="" style="width: 20px;"> Free shipping in India </li>
+<li><img src="{{ 'shiping-fast-red.png' | asset_url }}" alt=""> Estimated Shipping: <strong id="shipping_date"
+class="color-black">
+{% if product.metafields.custom.is_ship_faster == true %}
+  {% assign days = 5 | times: 86400 %}{{ "now" | date: "%s" | plus: days | date: "%b %-d, %Y" }}
+{% else %}
+  {% assign days = 21 | times: 86400 %}{{ "now" | date: "%s" | plus: days | date: "%b %-d, %Y" }}
+{% endif %}
+</strong></li>
+{% if product.metafields.custom.hallmark_policy != blank %}
+<li>
+<span class="color-brown">Note:</span> {{ product.metafields.custom.hallmark_policy }} </li>
+{% endif %}
+</ul>
+
+<div class="whatsapp-wrapper"> 
+    <div class="whatsapp-inner">
+      <div class="chat-buttons">
+        <a href="tel:916359945000"><span>{% render 'cell-icon' %} Call</span></a>  
+        <a href="https://api.whatsapp.com/send?phone=916359945000"><span>{% render 'whatsapp-icon' %} WhatsApp</span></a>
+      </div>
+     <div>
+      <span class="help-cta"></span>
+     </div>
+  </div>
+</div>
