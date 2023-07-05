@@ -1,0 +1,217 @@
+.static__page-title h2 {
+    color: #2C4545;
+    text-align: center;
+    font-size: 24px;
+    font-family: Akshar;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: -0.39px;
+    text-transform: capitalize;
+  }
+  
+  .collapsible-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 3rem;
+  }
+  
+  .collapsible__link-tabs {
+    display: none;
+  }
+  
+  .accordian--tab {
+    width: 100%;
+  }
+  
+  .collapsible__content-wrapper,
+  collapsible__content-wrapper-md {
+    margin: 3rem 0;
+    border: 1px solid #C8B668;
+  }
+  
+  .collapsible__link-tabs .quick__link {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  li.quick__link-tab, 
+  .collapsible__faq-details,
+  .faq__summary-title-sm {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: 0.11px;
+    text-transform: capitalize;
+    color: #2C4545;
+    border-bottom: 2px solid #C8B668;
+    width: 100%;
+    position: relative;
+  }
+  
+  .faq__summary-title-sm {
+    border-bottom: 4px solid #C8B668;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .quick__link-title-sm {
+    position: relative;
+    padding-left: 2rem;
+    font-weight: 600;
+  }
+  
+  .collapsible__link-tabs-sm .faq__accordion-title {
+    font-size: 14px;
+    line-height: 24px;
+  }
+  
+  .collapsible__link-tabs-sm .collapsible__faq-content p {
+    font-size: 12px;
+    line-height: 20px;
+  }
+  
+  li.quick__link-tab {
+    border-bottom: 4px solid #C8B668;
+    padding: 14px 20px;
+    cursor: pointer;
+  }
+  
+  .collapsible__faq-details:last-child {
+    border: none;
+  }
+  
+  .collapsible__faq-details {
+    padding: 10px 14px;
+  }
+  
+  .faq__summary-title {
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+  
+  .collapsible__faq-content p {
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.11px;
+    text-transform: capitalize;
+    color: #2C4545;
+    padding: 0 10px;
+  }
+  
+  .faq__accordion-title {
+    max-width: 90%;
+  }
+  
+  .faq__accordion-title::before,
+  li.quick__link-tab::before,
+  .quick__link-title-sm::before {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #2C4545;
+    display: block;
+    border-radius: 100%;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  li.quick__link-tab::before,
+  .quick__link-title-sm::before {
+    left: 8px;
+  }
+  
+  .faq__accordion-title span {
+    padding-left: 1.5rem;
+    display: block;
+  }
+  
+  .faq__summary-title-sm svg,
+  .collapsible__faq-details svg {
+    width: 16px;
+  }
+  
+  .refund__accordion-content {
+    display: block;
+    color: #000;
+    font-size: 12px;
+    font-family: Montserrat;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: 0.11px;
+  }
+  
+  .refund__accordion-content ul {
+    padding-left: 3rem;
+  }
+  
+  @media screen and (max-width: 749px) {
+    .collapsible__content-wrapper-md {
+      display: none;
+    }
+  }
+  
+  @media screen and (min-width: 750px) {
+    .static__page-title h2 {
+      color: #2C4545;
+      text-align: center;
+      font-size: 90px;
+      font-family: Akshar;
+      font-weight: 500;
+      line-height: 88.5px;
+      letter-spacing: -4.89px;
+    }
+    
+    .collapsible__link-tabs {
+      display: block;
+      width: 35%;
+    }
+  
+    .accordian--tab {
+      width: 60%;
+      border: 1px solid #C8B668;
+    }
+  
+    .collapsible-wrapper {
+      margin-top: 7rem;
+    }
+  
+    .collapsible__link-tabs-sm {
+      display: none;
+    }
+  
+    .collapsible__faq-content p {
+      padding: 0 20px;
+    }
+  
+    .refund-wrapper {
+      border: none;
+    }
+  
+    .refund__accordion-heading {
+      color: #2C4545;
+      font-size: 36px;
+      font-family: Montserrat;
+      font-weight: 600;
+      line-height: 70.5px;
+      letter-spacing: 0.11px;
+    }
+  
+    .refund__accordion-content ul {
+      padding-left: 2rem;
+    }
+  
+    .refund__accordion-content {
+      color: #2C4545;
+      font-size: 20px;
+      line-height: 40px;
+      letter-spacing: 0.11px;
+    }
+  }

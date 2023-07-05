@@ -1,0 +1,223 @@
+<div class="collection_products">
+  {% if collection.metafields.custom.recomended_products_ != blank %}
+    <h1>{{ section.settings.heading_text }}</h1>
+    <div class="metafield_collection_contianer grid product-grid grid--2-col-tablet-down grid--4-col-desktop">
+    {% for product in collection.metafields.custom.recomended_products_.value %}
+      <div class="metafield_collection_wrapper grid__item">
+      <div class="metafield_item_image_wrapper">
+      <div class="metafield_product">
+        <img class="metafield_collection_img" src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
+      </div>
+      <div class="price_of_product metafield_price">{{ product.price | money_without_trailing_zeros }}</div>
+      </div>
+      <div class="variants_add_to_cart">
+        <div class="variants_loop">
+          <div class="select-wrapper">
+            <select name="weight" class="select_item">
+{% for option in product.options_with_values %}
+  {% assign optionValues = "" %}
+  
+  {% for value in option.values %}
+    {% assign optionAvailable = false %}
+    {% for variant in product.variants %}
+      {% assign optionValue = 'option' | append: forloop.index %}
+      {% if variant[optionValue] == value %}
+        {% assign optionAvailable = true %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+    
+    {% unless optionAvailable %}
+      {% if optionValues == "" %}
+        {% assign optionValues = value %}
+      {% else %}
+        {% assign optionValues = optionValues | append: "," | append: value %}
+      {% endif %}
+    {% endunless %}
+  {% endfor %}
+
+  {% assign optionValuesArray = optionValues | split: "," %}
+  {% for value in optionValuesArray %}
+    <option class="option_variant"  value="{{ value }}" data-variant-id="{{ variant.id }}">
+      {{ value }}
+    </option>
+  {% endfor %}
+{% endfor %}
+
+
+            </select>
+          </div>
+        </div>
+        <button
+          type="button"
+          name="add"
+          class="product-form__submit add_to_cart_button button--secondary button--primary add_btn"
+          onclick="addToCart(this)"
+        >
+          ADD
+        </button>
+      </div>
+      <p
+        class="card__heading title_for_product metafiled_collection_title{% if product.featured_media or settings.card_style == 'standard' %} h5{% endif %}"
+        {% if product.featured_media or settings.card_style == 'card' %}
+          id="title-{{ section_id }}-{{ product.id }}"
+        {% endif %}
+      >
+        {{ product.title | escape }}
+      </p>
+
+      <div class="quick-add no-js-hidden">
+        {%- assign product_form_id = 'quick-add-' | append: section_id | append: product.id -%}
+        {%- if product.variants.size == 1 -%}
+          <product-form>
+            {%- form 'product',
+              product,
+              id: product_form_id,
+              class: 'form',
+              novalidate: 'novalidate',
+              data-type: 'add-to-cart-form'
+            -%}
+              <input
+                type="hidden"
+                name="id"
+                value="{{ product.selected_or_first_available_variant.id }}"
+                disabled
+              >
+              <button
+                id="{{ product_form_id }}-submit"
+                type="submit"
+                name="add"
+                class="quick-add__submit quick_view_btn button--full-width button--secondary"
+                aria-haspopup="dialog"
+                aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ product.id }}"
+                aria-live="polite"
+                data-sold-out-message="true"
+                {% if product.selected_or_first_available_variant.available == false %}
+                  disabled
+                {% endif %}
+              >
+                <span>
+                  {%- if product.selected_or_first_available_variant.available -%}
+                    {{ 'products.product.add_to_cart' | t }}
+                  {%- else -%}
+                    {{ 'products.product.sold_out' | t }}
+                  {%- endif -%}
+                </span>
+                <span class="sold-out-message hidden">
+                  {{ 'products.product.sold_out' | t }}
+                </span>
+                <div class="loading-overlay__spinner hidden">
+                  <svg
+                    aria-hidden="true"
+                    focusable="false"
+                    role="presentation"
+                    class="spinner"
+                    viewBox="0 0 66 66"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                  </svg>
+                </div>
+              </button>
+            {%- endform -%}
+          </product-form>
+        {%- else -%}
+          <modal-opener data-modal="#QuickAdd-{{ product.id }}">
+          
+          </modal-opener>
+      
+        {%- endif -%}
+      </div>
+    </div>
+    {% endfor %}
+</div>
+  {% endif %}
+</div>
+
+{% style %}
+  @media only screen and (max-width:749px){
+      .price_of_product.metafield_price{
+   padding-top:14px;
+  }
+    .variants_loop select.select_item{
+      padding:0;
+    }
+  }
+  @media only screen and (min-width:750px){
+     .price_of_product.metafield_price{
+   padding-top:24px;
+  }
+  }
+
+  .metafield_product{
+/*         height: 418px; */
+     height: calc(250px + (418 - 250) * (100vw - 375px) / (1440 - 375)); 
+    width: calc(150px + (257 - 150) * (100vw - 375px) / (1440 - 375)); 
+    
+    margin: auto;
+  }
+  .metafield_collection_img{
+   width: 100%; 
+    height:100%;
+    border-radius:13rem;
+    object-fit:cover;
+  }
+  .price_of_product{
+     font-size: calc(11px + (22 - 11) * (100vw - 375px) / (1440 - 375)); 
+    font-weight: 700;
+    text-align: center;
+  }
+  .collection_products{
+    width:90%;
+    margin: auto;
+  }
+  .variants_loop select.select_item{
+    font-weight: 700;
+    font-size: calc(11px + (20 - 11) * (100vw - 375px) / (1440 - 375)); 
+  }
+  .variants_add_to_cart button.product-form__submit.add_to_cart_button.button--secondary.button--primary.add_btn{
+        font-size: calc(11px + (20 - 11) * (100vw - 375px) / (1440 - 375)); 
+font-weight: 700;
+  }
+  .metafiled_collection_title{
+  color: #2C4545;
+text-align: center;
+font-size: calc(11px + (20 - 11) * (100vw - 375px) / (1440 - 375)); 
+font-style: normal;
+font-weight: 700;
+line-height: 24px;
+letter-spacing: 3px;
+text-transform: uppercase;
+    font-family: Montserrat;
+    padding-top: 13px;
+}
+.metafield_collection_contianer{
+/*   display: flex;
+  width:90%;
+  margin: auto;
+  gap: 10px; */
+}
+/*   .metafield_collection_wrapper{
+    width: 23%;
+  } */
+{% endstyle %}
+
+
+{% schema %}
+{
+  "name": "Collection-Recommendation",
+  "class": "section",
+  "settings":[
+    {
+      "type":"text",
+      "id":"heading_text",
+      "label": "Heading"
+    }
+  ],
+  "presets":[
+    {
+      "name":"Collection-Recommendation"
+    }
+  ]
+}
+{% endschema %}
