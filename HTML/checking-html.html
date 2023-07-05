@@ -1,0 +1,42 @@
+
+{%- when 'variant_picker' -%}
+{%- unless product.has_only_default_variant -%}
+  <marmeto-variant-radios
+    class=" product__variants"
+    data-section="{{ section.id }}"
+    data-url="{{ product.url }}"
+    {{ block.shopify_attributes }}
+  >
+    {%- for option in product.options_with_values -%}
+      <div class="product__variant">
+        <label class="product__variant--label">{{ option.name }}</label>
+        {%- for value in option.values -%}
+          <input
+            type="radio"
+            id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+            name="{{ option.name }}"
+            value="{{ value | escape }}"
+            form="{{ product_form_id }}"
+            {% if option.selected_value == value %}
+              checked
+            {% endif %}
+          >
+          <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+            {{ value }}
+        
+          </label>
+  
+        <div class="varinats">
+            {% assign some = forloop.index %}
+{% for variant in product.variants%}
+{% assign variant_sizes = variant.metafields.custom.company%}
+{% assign variant_item = variant_sizes  | split: "|" %}
+{% if forloop.index == some %}
+  {{ variant_item }}
+
+  {% endif %}
+  {% endfor %}
+        </div>
+        {%- endfor -%}
+      </div>
+    {%- endfor -%}
