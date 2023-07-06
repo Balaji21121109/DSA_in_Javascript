@@ -1,0 +1,441 @@
+{{ 'collection-tabs.css' | asset_url | stylesheet_tag }}
+
+<div class="collection_tabs_container section-{{ section.id }}">
+  <div class="collection_tab_heading grid grid grid--4-col grid--6-col-desktop">
+    {% for block in section.blocks %}
+      {% if block.settings.collection_heading != blank and block.settings.collection_id != blank %}
+        <div class="heading_tab_text {% if forloop.first %} is--active {% endif %}" data-tab="{{ block.settings.collection_heading | handleize }}-{{ block.id }}">
+          {% if block.settings.collection_image_logo != blank %}
+            <div class="logo_collection ">
+              <img src="{{ block.settings.collection_image_logo | image_url }}" alt="image" />
+            </div>
+          {% endif %}
+          <div class="logo_title_content">
+            <p class="logo_title">{{ block.settings.collection_id.title }}</p>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="collection_tab_contents">
+    {% assign product_limit = section.settings.product_limit %}
+    {%- for block in section.blocks -%}
+      <div class="collection_tab_content {% if forloop.first %} is--active {% endif %}" id="{{ block.settings.collection_heading | handleize }}-{{ block.id }}">
+        <div class="collection-tabs__slider desktop_collection_tab grid--2-col grid--3-col-tablet grid--4-col-desktop">
+          {% if block.settings.collection_heading != blank and block.settings.collection_id != blank %}
+            {%- for product in collections[block.settings.collection_id].products limit: product_limit -%}
+              <div class="collection-tabs__slideritem collection_tab_slider">
+                {% render 'product-card', section: block, product: product %}
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+        <div class="collection-tabs__slider mobile_collection_tab grid--2-col grid--4-col-desktop">
+          {% if block.settings.collection_heading != blank and block.settings.collection_id != blank %}
+            {%- for product in collections[block.settings.collection_id].products limit: section.settings.product_limit_mobile -%}
+              <div class="collection-tabs__slideritem collection_tab_slider">
+                {% render 'product-card', section: block, product: product %}
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+        <div class="link-center center">
+          <a class="button btn_view_all_mtr btn button--tertiary outline" href="{{block.settings.collection_id.url  }}">VIEW ALL PRODUCT</a>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% style %}
+  .section-{{ section.id }}{
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}
+    px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}
+    px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}{
+      padding-top: {{ section.settings.padding_top }}
+      px;
+      padding-bottom: {{ section.settings.padding_bottom }}
+      px;
+    }
+  }
+  span.current-price.product-title {
+    font-weight: 600;
+  }
+  .hover_image2 {
+    display: none;
+  }
+  /* .collection-tabs__slider{
+  flex-wrap: wrap;
+} */
+  .selling_title h6:hover {
+    text-decoration: underline;
+    color: #C4FA9B;
+  }
+  .product_image_hover:hover {
+    text-decoration: underline;
+    color: #C4FA9B;
+  }
+  .product_wrapper:hover .hover_image2 {
+    display: block;
+  }
+
+  .product_wrapper:hover .hover_image1 {
+    display: none;
+  }
+
+  a.button.btn.button--primary.product_btn_mtr {
+    border-radius: 5px;
+    font-family: Raleway;
+    font-size: calc(12px +(15 - 12) *(100vw - 375px) /(1440 - 375));
+    padding: 5px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0;
+    text-align: center;
+    color: black;
+  }
+  a.button.btn_view_all_mtr.btn.button--tertiary.outline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    height: 40px;
+    font-family: "Raleway";
+  }
+  .collection-tabs__slideritem .product_card_image img {
+    object-fit: contain;
+    width: 100%;
+  }
+  p.logo_title {
+    padding-top: 14px;
+    font-family: Raleway;
+    font-size: calc(12px +(18 - 12) *(100vw - 375px) /(1440 - 375));
+  }
+
+  .product-card__text_wrapper {
+    padding-top: 10px;
+  }
+  .product_card_image img {
+    object-fit: contain;
+  }
+  .product_card_image {
+    width: 100%;
+  }
+  .btn_view_all_mtr {
+    border: 1px solid #99cc66;
+    color: black !important;
+    border-radius: 5px;
+  }
+  .collection-tabs__slideritem {
+    border: 2px solid #f6f6f6;
+    padding: 13px;
+    border-radius: 5px;
+  }
+  .collection-tabs__slider {
+    display: flex;
+    gap: 13px;
+    padding: 0 26px 0 14px;
+  }
+  .collection_tab_heading {
+    margin: auto;
+    align-items: center;
+    width: 80%;
+  }
+  .heading_tab_text:hover {
+    text-decoration: underline;
+    font-weight: 700;
+    color: #d93833;
+  }
+  .heading_tab_text {
+    cursor: pointer;
+    width: 20%;
+    color: #d93833;
+  }
+  .collection_tab_content.is--active {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+    z-index: 1;
+  }
+  .collection-tabs__slider {
+    padding-top: 1rem;
+  }
+  .collection_tab_contents {
+    position: relative;
+  }
+  .collection_tab_content {
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    position: absolute;
+  }
+  .button-view-all {
+    background-color: #f7f5f2;
+    color: #715d4e;
+    opacity: 100%;
+    text-decoration: none;
+    border-radius: 50px;
+  }
+  .link-center {
+    padding-top: 53px;
+  }
+  .button-product {
+    padding-bottom: 13px;
+  }
+  .product-card__prices {
+    text-align: center;
+    padding-bottom: 18px;
+    padding-top: 8px;
+  }
+  .logo_collection_title {
+    color: red;
+  }
+  .product_btn {
+    /*   width: 58%; */
+    border-radius: 10px;
+    padding-top: 8px;
+  }
+  @media only screen and (max-width: 749px) {
+
+    .heading--c5f5d3d7-1291-418d-b38b-6598d2d3d07e {
+      line-height: 18px;
+    }
+    .sub_heading--c5f5d3d7-1291-418d-b38b-6598d2d3d07e {
+      line-height: 14.09px;
+    }
+    .product_btn {
+      width: 77.5%;
+    }
+    .collection-tabs__slideritem .product_card_image img {
+      object-fit: contain;
+      width: 100%;
+    }
+    a.button.btn_view_all_mtr.btn.button--tertiary.outline {
+      min-height: 34px;
+    }
+    .collection_tab_contents {
+      padding-top: 20px;
+    }
+    .heading_tab_text:hover {
+      font-weight: 700;
+    }
+    .desktop_collection_tab {
+      display: none !important;
+    }
+    .btn_view_all_mtr {
+      width: 40%;
+      border-radius: 5px;
+      font-family: Raleway;
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 13px;
+      letter-spacing: 0;
+      text-align: center;
+    }
+    .collection-tabs__slideritem {
+      width: 46%;
+    }
+    .product-card__link img {
+      width: 100%;
+      height: 100%;
+    }
+    .heading_tab_text {
+      flex: 0 0 84px;
+    }
+    .collection_tab_heading {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      width: 86%;
+    }
+    .logo_collection img {
+      width: 58px;
+      margin: 0;
+      height: 65px;
+      gap: 20px !important;
+    }
+    .heading_tab_text p {
+      font-family: Raleway;
+      line-height: 14px;
+      letter-spacing: 0;
+      text-align: center;
+    }
+    .product-title {
+      min-height: 36px;
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 12px;
+      letter-spacing: 0;
+      text-align: center;
+    }
+  }
+  @media only screen and (min-width: 750px) {
+    a.button.btn.button--primary.product_btn_mtr {
+      padding: 5px !important;
+      min-height: 29px;
+    }
+    .collection_tab_slider .product_btn {
+      padding-bottom: 18px;
+    }
+    .collection-tabs__slideritem {
+      padding: 19px 18px 5px 17px;
+    }
+    .collection-tabs__slideritem {
+      width: 25%;
+    }
+    .logo_title {
+      line-height: 21px;
+      letter-spacing: 0;
+      text-align: center;
+    }
+    .mobile_collection_tab {
+      display: none !important;
+    }
+    .logo_collection p {
+      font-family: Raleway;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 21px;
+      letter-spacing: 0;
+      text-align: center;
+    }
+    .product-card__wrapper {
+      text-align: center;
+    }
+    .collection_tab_heading {
+      max-width: 75%;
+    }
+    .collection_tab_contents {
+      width: 75%;
+      margin: auto;
+      padding-top: 30px;
+    }
+    .heading_tab_text {
+      width: 14%;
+      margin: auto;
+    }
+    .logo_title {
+      font-size: 16px;
+    }
+    .product-title {
+      min-height: 36px;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 18px;
+      letter-spacing: 0;
+      text-align: center;
+    }
+    .logo_collection img {
+      height: 111px;
+      width: 100px;
+      object-fit: contain;
+    }
+  }
+  @media only screen and (min-width: 750px) and(max-width: 1024px) {
+    .product_btn {
+      width: 77%;
+    }
+    .heading_tab_text {
+      width: 25%;
+    }
+    .collection_tab_slider:nth-child(3) {
+      display: none;
+    }
+  }
+{% endstyle %}
+
+<script>
+  document.querySelectorAll(".heading_tab_text").forEach((head) => {
+    head.addEventListener("click", (event) => {
+      let tabId = head.dataset.tab;
+      document.querySelectorAll(".heading_tab_text").forEach((h) => h.classList.remove("is--active"));
+      document.querySelectorAll(".collection_tab_content").forEach((c) => c.classList.remove("is--active"));
+      head.classList.add("is--active");
+      document.getElementById(tabId).classList.add("is--active");
+    });
+  });
+</script>
+
+
+{% schema %}
+  {
+    "name": "Collection Tabs",
+    "tag": "section",
+    "class": "homepage-section",
+    "settings": [
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "padding_top",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "padding_bottom",
+        "default": 36
+      },
+      {
+        "type": "richtext",
+        "id": "heading_text",
+        "label": "Heading Product"
+      },
+      {
+        "type": "range",
+        "id": "product_limit",
+        "min": 1,
+        "max": 20,
+        "step": 1,
+        "label": "Product limit",
+        "default": 4
+      }, {
+        "type": "range",
+        "id": "product_limit_mobile",
+        "min": 1,
+        "max": 20,
+        "step": 1,
+        "label": "Product limit mobile",
+        "default": 1
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Collection Tab",
+        "type": "collection-tab",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "collection_image_logo",
+            "label": "Collection logo"
+          }, {
+            "type": "text",
+            "id": "collection_heading",
+            "label": "Collection heading"
+          }, {
+            "type": "collection",
+            "id": "collection_id",
+            "label": "Collection"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Collection Tabs"
+      }
+    ]
+  }
+{% endschema %}

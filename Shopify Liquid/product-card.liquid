@@ -1,0 +1,50 @@
+{% comment %}
+Renders a product card
+Accepts:
+- product_card_product: {Object} Product Liquid object (optional)
+- media_size: {String} Size of the product image card. Values are "square" and "portrait". Default is "square" (optional)
+- show_secondary_image: {Boolean} Show the secondary image on hover. Default: false (optional)
+- add_image_padding: {Boolean} Enables padding on the image to space out the grid
+- show_vendor: {Boolean} Show the product vendor. Default: false
+- show_image_outline: {Boolean} Show card outline. Default: true (optional)
+- show_rating: {Boolean} Show the product rating. Default: false
+Usage:
+{% render 'product-card', product: product %}
+{% endcomment %}
+
+
+<product-card class="product-card" data-handle="{{ product.handle }}">
+  {%- assign current_variant = product.selected_or_first_available_variant -%}
+  {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
+  {%- assign hover_image = product.images[1] | default: product.featured_image -%}
+
+  {%- assign form_id = 'Form-' | append: section.id | append: product.id -%}
+  <div class="product_wrapper">
+    <a href="{{ product.url }}" class="product-card__link">
+      <div class="product_card_image">
+        {% render 'image', class: "media media--square hover_image1", mobileSrc: featured_image, desktopSrc: featured_image %}
+        {% render 'image', class: "media media--square hover_image2", mobileSrc: hover_image, desktopSrc: hover_image %}
+      </div>
+    </a>
+    <div class="product-card__text_wrapper">
+      <div>
+        <a href="{{ product.url }}" class="product_image_hover">
+          <div class="product-title ">{{ product.title }}</div>
+        </a>
+      </div>
+      <div class="product-card__prices">
+        <span class="current-price product-title">{{ product.price | money }}</span>
+        {% if product.compare_at_price > product.price %}
+          <s class="compare-at-price">{{ product.compare_at_price | money }}</s>
+        {% endif %}
+      </div>
+      <div class="product_btn center">
+        {% if product.available %}
+          <a href="{{product.url }}" class="button btn button--primary product_btn_mtr">Shop Now</a>
+        {% else %}
+          <a href="" class="not_on_sale btn button--primary product_btn_mtr">Not on sale</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</product-card>
