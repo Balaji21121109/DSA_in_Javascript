@@ -1,252 +1,81 @@
-{% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
-{{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
-{{ 'collection_page.css' | asset_url | stylesheet_tag }}
-
-{%- style -%}
-  @media screen and (max-width: 749px) {
-    .collection-hero--with-image .collection-hero__inner {
-      padding-bottom: calc({{ settings.media_shadow_vertical_offset | at_least: 0 }}px + 2rem);
-    }
-  }
-{%- endstyle -%}
-
-<div class="all_collections_names">
-  <div class="collection_name_container">
-    {% for collection in collections %}
-
-       {% assign collection_title = collection.title | handleize %}
-
-      <a href="{{ collection.url }}" class="brownies_link">
-        <h5 class="collection_names_text  {% if request.path contains collection_title  %} collection_title_page {% endif %} {{ collection_title }}">{{ collection.title }}</h5>
-      </a>
-    {% endfor %}
-  </div>
-</div>
-<style>
-  .collection_title_page {
-    background: red;
-  }
-</style>
-
-
-
-
-
-<div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
- 
-  <div class="collection-hero__inner page-width">
-    
-  
-
-    <div class="collection-hero__text-wrapper">
-      <h1 class="collection-hero__title">
-        <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
-        {{- collection.title | escape -}}
-      </h1>
-
-      {%- if section.settings.show_collection_description -%}
-        <div class="collection-hero__description rte">{{ collection.description }}</div>
-      {%- endif -%}
-    </div>
-
-    {%- if section.settings.show_collection_image and collection.image -%}
-      <div class="collection-hero__image-container media gradient">
-        <img
-          srcset="{%- if collection.image.width >= 165 -%}{{ collection.image | image_url: width: 165 }} 165w,{%- endif -%}
-            {%- if collection.image.width >= 360 -%}{{ collection.image | image_url: width: 360 }} 360w,{%- endif -%}
-            {%- if collection.image.width >= 535 -%}{{ collection.image | image_url: width: 535 }} 535w,{%- endif -%}
-            {%- if collection.image.width >= 750 -%}{{ collection.image | image_url: width: 750 }} 750w,{%- endif -%}
-            {%- if collection.image.width >= 1070 -%}{{ collection.image | image_url: width: 1070 }} 1070w,{%- endif -%}
-            {%- if collection.image.width >= 1500 -%}{{ collection.image | image_url: width: 1500 }} 1500w,{%- endif -%}
-            {{ collection.image | image_url }} {{ collection.image.width }}w"
-          src="{{ collection.image | image_url: width: 750 }}"
-          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
-          alt=""
-          width="{{ collection.image.width }}"
-          height="{{ collection.image.height }}"
-        >
+<div class="faq-section faq_mobile-section">
+  <div class="faq-container section-{{ section.id }}-padding">
+    <div class="faq_section-list">
+      <div class="faq_section-left">
+        <div class="tab_1"> {% if section.settings.question_type1 != blank %} <h3 class="tablinks details is--active " data-tab="Tab-{{ section.id }}-7">
+            <span class="questions">{{ section.settings.question_type1 }}</span>
+          <p>{% render 'down-arrow-1' %}</p>
+          </h3> {% endif %} <details class="faq-tab__details">
+             
+            <summary class="faq-tab__summary">
+                <span class="down_arrow">{{ section.settings.question_type1 }}</span>
+                <p>{% render 'down_arrow' %}</p>
+              </summary>
+              <div class="product-tab__content">
+                {{ product.description }}
+              </div>
+            </details> 
+        </div> {% if section.settings.question_type2 != blank %} <h3 class="tablinks details" data-tab="Tab-{{ section.id }}-8">
+          <span class="questions">{{ section.settings.question_type2 }}</span>
+          <p>{% render 'down-arrow-1' %}</p>
+        </h3> {% endif %} <div id="Tab-{{ section.id }}-8" class="tab-content details question2" data-tab="Tab-{{ section.id }}-8">  {% assign index = forloop.index %}  {% if forloop.index == index %} <details class="faq-tab__details">
+            <summary class="faq-tab__summary">
+              <span> {{ section.settings.question_type2 }}</span>
+              <p>{% render 'down_arrow' %}</p>
+            </summary>
+            <div class="product-tab__content">
+              {{  product.metafields.custom.product_specific  }}
+            </div>
+          </details> {% endif %} </div> {% if section.settings.question_type3 != blank %} <h3 class="tablinks details" data-tab="Tab-{{ section.id }}-9">
+          <span class="questions"> {{ section.settings.question_type3 }} </span>
+            <p>{% render 'down-arrow-1' %}</p>
+        </h3> {% endif %} <div id="Tab-{{ section.id }}-9" class="tab-content details question3" data-tab="Tab-{{ section.id }}-9"> {% for question in page.metafields.custom.faq_question3.value %} {% assign index = forloop.index %} {% for answer in page.metafields.custom.faq_answers3.value %} {% if forloop.index == index %} <details class="faq-tab__details">
+            <summary class="faq-tab__summary">
+              <span>{{ question }}</span>
+              <p>{% render 'down_arrow' %}</p>
+            </summary>
+            <div class="product-tab__content">
+              {{ answer }}
+            </div>
+          </details> {% endif %} {% endfor %} {% endfor %} </div> {% if section.settings.question_type4 != blank %} <h3 class="tablinks details" data-tab="Tab-{{ section.id }}-10">
+          <span class="questions"> {{ section.settings.question_type4 }} </span>
+            <p>{% render 'down-arrow-1' %}</p>
+        </h3> {% endif %} <div id="Tab-{{ section.id }}-10" class="tab-content details question4" data-tab="Tab-{{ section.id }}-10"> {% for question in page.metafields.custom.faq_question4.value %} {% assign index = forloop.index %} {% for answer in page.metafields.custom.faq_answers4.value %} {% if forloop.index == index %} <details class="faq-tab__details">
+            <summary class="faq-tab__summary">
+              <span>{{ question }}</span>
+              <p>{% render 'down_arrow' %}</p>
+            </summary>
+            <div class="product-tab__content">
+              {{ answer }}
+            </div>
+          </details> {% endif %} {% endfor %} {% endfor %} </div> {% if section.settings.question_type5 != blank %} <h3 class="tablinks details" data-tab="Tab-{{ section.id }}-11">
+          <span class="questions"> {{ section.settings.question_type5 }} </span>
+            <p>{% render 'down-arrow-1' %}</p>
+        </h3> {% endif %} <div id="Tab-{{ section.id }}-11" class="tab-content details question5" data-tab="Tab-{{ section.id }}-11"> {% for question in page.metafields.custom.faq_question5.value %} {% assign index = forloop.index %} {% for answer in page.metafields.custom.faq_answers5.value %} {% if forloop.index == index %} <details class="faq-tab__details">
+            <summary class="faq-tab__summary">
+              <span>{{ question }}</span>
+              <p>{% render 'down_arrow' %}</p>
+            </summary>
+            <div class="product-tab__content">
+              {{ answer }}
+            </div>
+          </details> {% endif %} {% endfor %} {% endfor %} </div> {% if section.settings.question_type6 != blank %} <h3 class="tablinks details" data-tab="Tab-{{ section.id }}-12">
+          <span class="questions"> {{ section.settings.question_type6 }} </span>
+            <p>{% render 'down-arrow-1' %}</p>
+        </h3> {% endif %} <div id="Tab-{{ section.id }}-12" class="tab-content details question6" data-tab="Tab-{{ section.id }}-12"> {% for question in page.metafields.custom.faq_question6.value %} {% assign index = forloop.index %} {% for answer in page.metafields.custom.faq_answers6.value %} {% if forloop.index == index %} <details class="faq-tab__details">
+            <summary class="faq-tab__summary">
+              <span>{{ question }}</span>
+              <p>{% render 'down_arrow' %}</p>
+            </summary>
+            <div class="product-tab__content">
+              {{ answer }}
+            </div>
+          </details> 
+          {% endif %} 
+         {% endfor %}
+        {% endfor %} 
+        </div>
       </div>
-    {%- endif -%}
-  </div>
-</div>
-
-{% schema %}
-{
-  "name": "t:sections.main-collection-banner.name",
-  "class": "section",
-  "settings": [
-    {
-      "type": "paragraph",
-      "content": "t:sections.main-collection-banner.settings.paragraph.content"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_collection_description",
-      "default": true,
-      "label": "t:sections.main-collection-banner.settings.show_collection_description.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_collection_image",
-      "default": false,
-      "label": "t:sections.main-collection-banner.settings.show_collection_image.label",
-      "info": "t:sections.main-collection-banner.settings.show_collection_image.info"
-    },
-    {
-      "type": "select",
-      "id": "color_scheme",
-      "options": [
-        {
-          "value": "accent-1",
-          "label": "t:sections.all.colors.accent_1.label"
-        },
-        {
-          "value": "accent-2",
-          "label": "t:sections.all.colors.accent_2.label"
-        },
-        {
-          "value": "background-1",
-          "label": "t:sections.all.colors.background_1.label"
-        },
-        {
-          "value": "background-2",
-          "label": "t:sections.all.colors.background_2.label"
-        },
-        {
-          "value": "inverse",
-          "label": "t:sections.all.colors.inverse.label"
-        }
-      ],
-      "default": "background-1",
-      "label": "t:sections.all.colors.label"
-    }
-  ]
-}
-{% endschema %}
-
-{% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
-{{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
-{{ 'collection_page.css' | asset_url | stylesheet_tag }}
-
-{%- style -%}
-  @media screen and (max-width: 749px) {
-    .collection-hero--with-image .collection-hero__inner {
-      padding-bottom: calc({{ settings.media_shadow_vertical_offset | at_least: 0 }}px + 2rem);
-    }
-  }
-{%- endstyle -%}
-
-<div class="all_collections_names">
-  <div class="collection_name_container">
-    {% for collection in collections %}
-
-       {% assign collection_title = collection.title | handleize %}
-
-      <a href="{{ collection.url }}" class="brownies_link">
-        <h5 class="collection_names_text  {% if request.path contains collection_title  %} collection_title_page {% endif %} {{ collection_title }}">{{ collection.title }}</h5>
-      </a>
-    {% endfor %}
-  </div>
-</div>
-<style>
-  .collection_title_page {
-    background: red;
-  }
-</style>
-
-
-
-
-
-<div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
- 
-  <div class="collection-hero__inner page-width">
-    
-  
-
-    <div class="collection-hero__text-wrapper">
-      <h1 class="collection-hero__title">
-        <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
-        {{- collection.title | escape -}}
-      </h1>
-
-      {%- if section.settings.show_collection_description -%}
-        <div class="collection-hero__description rte">{{ collection.description }}</div>
-      {%- endif -%}
     </div>
-
-    {%- if section.settings.show_collection_image and collection.image -%}
-      <div class="collection-hero__image-container media gradient">
-        <img
-          srcset="{%- if collection.image.width >= 165 -%}{{ collection.image | image_url: width: 165 }} 165w,{%- endif -%}
-            {%- if collection.image.width >= 360 -%}{{ collection.image | image_url: width: 360 }} 360w,{%- endif -%}
-            {%- if collection.image.width >= 535 -%}{{ collection.image | image_url: width: 535 }} 535w,{%- endif -%}
-            {%- if collection.image.width >= 750 -%}{{ collection.image | image_url: width: 750 }} 750w,{%- endif -%}
-            {%- if collection.image.width >= 1070 -%}{{ collection.image | image_url: width: 1070 }} 1070w,{%- endif -%}
-            {%- if collection.image.width >= 1500 -%}{{ collection.image | image_url: width: 1500 }} 1500w,{%- endif -%}
-            {{ collection.image | image_url }} {{ collection.image.width }}w"
-          src="{{ collection.image | image_url: width: 750 }}"
-          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
-          alt=""
-          width="{{ collection.image.width }}"
-          height="{{ collection.image.height }}"
-        >
-      </div>
-    {%- endif -%}
   </div>
 </div>
-
-{% schema %}
-{
-  "name": "t:sections.main-collection-banner.name",
-  "class": "section",
-  "settings": [
-    {
-      "type": "paragraph",
-      "content": "t:sections.main-collection-banner.settings.paragraph.content"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_collection_description",
-      "default": true,
-      "label": "t:sections.main-collection-banner.settings.show_collection_description.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_collection_image",
-      "default": false,
-      "label": "t:sections.main-collection-banner.settings.show_collection_image.label",
-      "info": "t:sections.main-collection-banner.settings.show_collection_image.info"
-    },
-    {
-      "type": "select",
-      "id": "color_scheme",
-      "options": [
-        {
-          "value": "accent-1",
-          "label": "t:sections.all.colors.accent_1.label"
-        },
-        {
-          "value": "accent-2",
-          "label": "t:sections.all.colors.accent_2.label"
-        },
-        {
-          "value": "background-1",
-          "label": "t:sections.all.colors.background_1.label"
-        },
-        {
-          "value": "background-2",
-          "label": "t:sections.all.colors.background_2.label"
-        },
-        {
-          "value": "inverse",
-          "label": "t:sections.all.colors.inverse.label"
-        }
-      ],
-      "default": "background-1",
-      "label": "t:sections.all.colors.label"
-    }
-  ]
-}
-{% endschema %}
-
