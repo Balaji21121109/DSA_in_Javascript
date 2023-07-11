@@ -1,0 +1,662 @@
+{{ 'product-description-fields.css' | asset_url | stylesheet_tag }}
+
+<div class="faq-section">
+  <div class="faq-container section-{{ section.id }}-padding">
+
+    <div class="faq_section-list">
+      <div class="faq_section-left ">
+        {% if section.settings.question_type1 != blank %}
+          <h3 class="tablinks details is--active " data-tab="Tab-{{ section.id }}-1">
+            {{ section.settings.question_type1 }}
+          </h3>
+        {% endif %}
+        {% if section.settings.question_type2 != blank %}
+          <h3 class="tablinks details" data-tab="Tab-{{ section.id }}-2">
+            {{ section.settings.question_type2 }}
+          </h3>
+        {% endif %}
+        {% if section.settings.question_type3 != blank %}
+          <h3 class="tablinks details" data-tab="Tab-{{ section.id }}-3">
+            {{ section.settings.question_type3 }}
+          </h3>
+        {% endif %}
+        {% if section.settings.question_type4 != blank %}
+          <h3 class="tablinks details" data-tab="Tab-{{ section.id }}-4">
+            {{ section.settings.question_type4 }}
+          </h3>
+        {% endif %}
+        {% if section.settings.question_type5 != blank %}
+          <h3 class="tablinks details" data-tab="Tab-{{ section.id }}-5">
+            {{ section.settings.question_type5 }}
+          </h3>
+        {% endif %}
+        {% if section.settings.question_type6 != blank %}
+          <h3 class="tablinks details" data-tab="Tab-{{ section.id }}-6">
+            {{ section.settings.question_type6 }}
+          </h3>
+        {% endif %}
+      </div>
+      <div class="faq_section-right">
+        <div
+          id="Tab-{{ section.id }}-1"
+          class="tab-content details question1"
+          data-tab="Tab-{{ section.id }}-1">
+          {% assign index = forloop.index %}
+          {% if forloop.index == index %}
+            <p class="faq-tab__details">
+
+              <div class="product-tab__content">
+                {{ product.description }}
+              </div>
+            </p>
+          {% endif %}
+        </div>
+        <div
+          id="Tab-{{ section.id }}-2"
+          class="tab-content details question2"
+          data-tab="Tab-{{ section.id }}-2">
+          {% if product.metafields.custom.product_specific != blank %}
+            {% assign index = forloop.index %}
+            {% if forloop.index == index %}
+              <p class="faq-tab__details">
+
+                <div class="product-tab__content">
+                  {{ product.metafields.custom.product_specific }}
+                </div>
+              </p>
+            {% endif %}
+          {% endif %}
+        </div>
+        <div
+          id="Tab-{{ section.id }}-3"
+          class="tab-content details question3"
+          data-tab="Tab-{{ section.id }}-3">
+          {% if product.metafields.custom.shipping_and_delivery != blank %}
+            {% assign index = forloop.index %}
+            {% if forloop.index == index %}
+              <p class="faq-tab__details">
+
+                <div class="product-tab__content">
+                  {{ product.metafields.custom.shipping_and_delivery }}
+                </div>
+              </p>
+            {% endif %}
+          {% endif %}
+        </div>
+        <div
+          id="Tab-{{ section.id }}-4"
+          class="tab-content details question4"
+          data-tab="Tab-{{ section.id }}-4">
+          {% if product.metafields.custom.product_reviews != blank %}
+            {% assign index = forloop.index %}
+            {% if forloop.index == index %}
+              <p class="faq-tab__details">
+
+                <div class="product-tab__content">
+                  {{ product.metafields.custom.product_reviews }}
+                </div>
+              </p>
+            {% endif %}
+          {% endif %}
+        </div>
+        <div
+          id="Tab-{{ section.id }}-5"
+          class="tab-content details question5"
+          data-tab="Tab-{{ section.id }}-5">
+          {% if product.metafields.custom.contact_us != blank %}
+            {% assign index = forloop.index %}
+            {% if forloop.index == index %}
+              <p class="faq-tab__details">
+
+                <div class="product-tab__content">
+                  {{ product.metafields.custom.contact_us }}
+                </div>
+              </p>
+            {% endif %}
+          {% endif %}
+        </div>
+        <div
+          id="Tab-{{ section.id }}-6"
+          class="tab-content details question6"
+          data-tab="Tab-{{ section.id }}-6">
+          {% for question in page.metafields.custom.faq_question6.value %}
+            {% assign index = forloop.index %}
+            {% for answer in page.metafields.custom.faq_answers6.value %}
+              {% if forloop.index == index %}
+                <details class="faq-tab__details">
+                  <summary class="faq-tab__summary">
+                    <span>{{ question }}</span>
+                    <p>{% render 'down_arrow' %}</p>
+                  </summary>
+                  <div class="product-tab__content">
+                    {{ answer }}
+                  </div>
+                </details>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="faq_image">
+      {% if section.settings.image_mobile != blank %}
+        <img src="{{ section.settings.image_mobile | img_url : 'master' }}">
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- MOBILE FAQ SECTION -->
+<div class="faq-section faq_mobile-section">
+  <div class="faq-container section-{{ section.id }}-padding">
+    <div class="faq_section-list">
+      <div class="faq_section-left">
+        <div class="tab_1">
+          {% if section.settings.question_type1 != blank %}
+            <h3 class="tablinks details is--active " data-tab="Tab-{{ section.id }}-7">
+              <span class="questions">{{ section.settings.question_type1 }}</span>
+              <p>{% render 'down-arrow-1' %}</p>
+            </h3>
+          {% endif %}
+          <div
+            id="Tab-{{ section.id }}-7"
+            class="tab-content details question1"
+            data-tab="Tab-{{ section.id }}-7">
+            {% for question in page.metafields.custom.faq_questions.value %}
+              {% assign index = forloop.index %}
+              {% for answer in page.metafields.custom.faq_answers.value %}
+                {% if forloop.index == index %}
+                  <details class="faq-tab__details">
+
+                    <summary class="faq-tab__summary">
+                      <span class="down_arrow">{{ question }}</span>
+                      <p>{% render 'down_arrow' %}</p>
+                    </summary>
+                    <div class="product-tab__content">
+                      {{ answer }}
+                    </div>
+                  </details>
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+          </div>
+        </div>
+        {% if section.settings.question_type2 != blank %}
+          <h3 class="tablinks details" data-tab="Tab-{{ section.id }}-8">
+            <span class="questions">{{ section.settings.question_type2 }}</span>
+            <p>{% render 'down-arrow-1' %}</p>
+          </h3>
+        {% endif %}
+        <div
+          id="Tab-{{ section.id }}-8"
+          class="tab-content details question2"
+          data-tab="Tab-{{ section.id }}-8">
+          {% for question in page.metafields.custom.faq_questions2.value %}
+            {% assign index = forloop.index %}
+            {% for answer in page.metafields.custom.faq_answers2.value %}
+              {% if forloop.index == index %}
+                <details class="faq-tab__details">
+                  <summary class="faq-tab__summary">
+                    <span>{{ question }}</span>
+                    <p>{% render 'down_arrow' %}</p>
+                  </summary>
+                  <div class="product-tab__content">
+                    {{ answer }}
+                  </div>
+                </details>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </div>
+        {% if section.settings.question_type3 != blank %}
+          <h3 class="tablinks details" data-tab="Tab-{{ section.id }}-9">
+            <span class="questions">
+              {{ section.settings.question_type3 }}
+            </span>
+            <p>{% render 'down-arrow-1' %}</p>
+          </h3>
+        {% endif %}
+        <div
+          id="Tab-{{ section.id }}-9"
+          class="tab-content details question3"
+          data-tab="Tab-{{ section.id }}-9">
+          {% for question in page.metafields.custom.faq_question3.value %}
+            {% assign index = forloop.index %}
+            {% for answer in page.metafields.custom.faq_answers3.value %}
+              {% if forloop.index == index %}
+                <details class="faq-tab__details">
+                  <summary class="faq-tab__summary">
+                    <span>{{ question }}</span>
+                    <p>{% render 'down_arrow' %}</p>
+                  </summary>
+                  <div class="product-tab__content">
+                    {{ answer }}
+                  </div>
+                </details>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </div>
+        {% if section.settings.question_type4 != blank %}
+          <h3 class="tablinks details" data-tab="Tab-{{ section.id }}-10">
+            <span class="questions">
+              {{ section.settings.question_type4 }}
+            </span>
+            <p>{% render 'down-arrow-1' %}</p>
+          </h3>
+        {% endif %}
+        <div
+          id="Tab-{{ section.id }}-10"
+          class="tab-content details question4"
+          data-tab="Tab-{{ section.id }}-10">
+          {% for question in page.metafields.custom.faq_question4.value %}
+            {% assign index = forloop.index %}
+            {% for answer in page.metafields.custom.faq_answers4.value %}
+              {% if forloop.index == index %}
+                <details class="faq-tab__details">
+                  <summary class="faq-tab__summary">
+                    <span>{{ question }}</span>
+                    <p>{% render 'down_arrow' %}</p>
+                  </summary>
+                  <div class="product-tab__content">
+                    {{ answer }}
+                  </div>
+                </details>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </div>
+        {% if section.settings.question_type5 != blank %}
+          <h3 class="tablinks details" data-tab="Tab-{{ section.id }}-11">
+            <span class="questions">
+              {{ section.settings.question_type5 }}
+            </span>
+            <p>{% render 'down-arrow-1' %}</p>
+          </h3>
+        {% endif %}
+        <div
+          id="Tab-{{ section.id }}-11"
+          class="tab-content details question5"
+          data-tab="Tab-{{ section.id }}-11">
+          {% for question in page.metafields.custom.faq_question5.value %}
+            {% assign index = forloop.index %}
+            {% for answer in page.metafields.custom.faq_answers5.value %}
+              {% if forloop.index == index %}
+                <details class="faq-tab__details">
+                  <summary class="faq-tab__summary">
+                    <span>{{ question }}</span>
+                    <p>{% render 'down_arrow' %}</p>
+                  </summary>
+                  <div class="product-tab__content">
+                    {{ answer }}
+                  </div>
+                </details>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </div>
+        {% if section.settings.question_type6 != blank %}
+          <h3 class="tablinks details" data-tab="Tab-{{ section.id }}-12">
+            <span class="questions">
+              {{ section.settings.question_type6 }}
+            </span>
+            <p>{% render 'down-arrow-1' %}</p>
+          </h3>
+        {% endif %}
+        <div
+          id="Tab-{{ section.id }}-12"
+          class="tab-content details question6"
+          data-tab="Tab-{{ section.id }}-12">
+          {% for question in page.metafields.custom.faq_question6.value %}
+            {% assign index = forloop.index %}
+            {% for answer in page.metafields.custom.faq_answers6.value %}
+              {% if forloop.index == index %}
+                <details class="faq-tab__details">
+                  <summary class="faq-tab__summary">
+                    <span>{{ question }}</span>
+                    <p>{% render 'down_arrow' %}</p>
+                  </summary>
+                  <div class="product-tab__content">
+                    {{ answer }}
+                  </div>
+                </details>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function open(evt, tabId) {
+    var i,
+      tabcontent,
+      tablinks;
+    tabcontent = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].classList.remove("is--active");
+    }
+    var tabElement = document.getElementById(tabId);
+    if (tabElement.style.display !== "block") {
+      tabElement.style.display = "block";
+      evt.currentTarget.classList.add("is--active");
+    } else {
+      tabElement.style.display = "none";
+      evt.currentTarget.classList.remove("is--active");
+    }
+  }
+  var activeElement = document.querySelector(".is--active");
+  if (activeElement) {
+    activeElement.click();
+  }
+  var tablinks = document.getElementsByClassName('tablinks');
+  for (var i = 0; i < tablinks.length; i++) {
+    tablinks[i].addEventListener("click", function(event) {
+      var tabId = event.currentTarget.getAttribute("data-tab");
+      open(event, tabId);
+    });
+  }
+</script>
+{% style %}
+  .faq-tab__details {
+    border-top: 1px solid #c8b668;
+    border-left: 1px solid #c8b668;
+    border-right: 1px solid #c8b668;
+    padding: 0 10px;
+  }
+  .faq-tab__details:last-child {
+    border-bottom: 1px solid #c8b668;
+  }
+  .faq_mobilr-section {
+    display: none;
+  }
+  .faq-text-block-heading-text img {
+    display: flex;
+    width: 70px;
+    height: 12px;
+  }
+  .faq-tab__summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-text-block-heading-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .faq_section-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 43px 134px 0;
+  }
+  .tabcontent {
+    float: left;
+    padding: 0 12px;
+    border: 1px solid #ccc;
+    width: 60%;
+    border-left: none;
+    height: 300px;
+  }
+  .tablinks.is--active {
+    background-color: red;
+  }
+  .faq_section-left {
+    float: left;
+    width: 36%;
+    /*   padding: 0 10rem; */
+  }
+  .faq_section-right {
+    width: 60%;
+    /*   padding: 0 8rem 0 0; */
+    margin-top: 20px;
+  }
+  .faq_image {
+    padding: 0 8rem;
+  }
+  .faq_section-left .tablinks {
+    display: block;
+    background-color: inherit;
+    color: #2c4545;
+    width: 100%;
+    /*   margin: 1rem; */
+    border-bottom: 2px solid #c8b668 !important;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .tab-content {
+    float: left;
+    width: 100%;
+  }
+  .faq_section-left h3 {
+    display: block;
+    text-align: left;
+    transition: 0.3s;
+    font-size: calc(12px +(14 - 12) *(100vw - 375px) /(1440 - 375));
+    line-height: calc(43.5px +(70.5 - 43.5) *(100vw - 375px) /(1440 - 375));
+    font-weight: 500;
+    color: #c8b668;
+  }
+  .faq_section-left h3::before {
+    display: inline-block;
+    content: "";
+    -webkit-border-radius: -21.625rem;
+    border-radius: 0.375rem;
+    height: 0.75rem;
+    width: 0.75rem;
+    margin-right: 0.5rem;
+    background-color: #c8b668;
+  }
+  .faq_section-left h3.is--active {
+    color: #c8b668;
+    font-weight: 600;
+  }
+  .faq-tab__summary span::before {
+    display: inline-block;
+    content: "";
+    -webkit-border-radius: -21.625rem;
+    border-radius: 0.375rem;
+    height: 0.7rem;
+    width: 0.75rem;
+    margin-right: 0.5rem;
+    background-color: #c8b668;
+  }
+  .faq-tab__summary span {
+    font-size: calc(12px +(14 - 12) *(100vw - 375px) /(1440 - 375));
+    font-weight: 500;
+    line-height: calc(43.5px +(49.5 - 43.5) *(100vw - 375px) /(1440 - 375));
+    color: #2c4545;
+  }
+  .details {
+    display: none;
+  }
+  .faq_section-right .details:first-child {
+    display: block;
+  }
+  .faq_heading-text {
+    font-family: "Montserrat";
+    /*   font-size:  */
+    font-size: calc(24px +(30 - 24) *(100vw - 375px) /(1440 - 375));
+    font-weight: 600;
+    line-height: 37px;
+    letter-spacing: 1.61px;
+    text-align: center;
+    color: #5bb7a1;
+    margin-left: 41px;
+    text-transform: uppercase;
+    margin-right: 41px;
+  }
+  .faq_mobile-section {
+    display: none;
+  }
+  .questions {
+    width: 40%;
+  }
+  .faq-tab__details .product-tab__content {
+    font-size: 12px;
+    line-height: 23px;
+    letter-spacing: 0.11px;
+    font-weight: 500;
+    color: #9b9b9b;
+    width: 84%;
+    padding: 0 0 30px 10px;
+  }
+  @media only screen and (max-width: 750px) {
+    .faq_image {
+      display: none;
+    }
+    .faq-section {
+      display: none;
+    }
+    .faq_mobile-section {
+      display: block;
+    }
+    .tab-content {
+      margin-bottom: 2rem;
+    }
+    .tablinks {
+      margin: 3rem;
+    }
+    .questions {
+      width: 100%;
+    }
+    .faq_heading-text {
+      font-family: Akshar;
+      font-size: 24px;
+      font-weight: 9900;
+      line-height: 20px;
+      letter-spacing: -0.38px;
+      text-align: center;
+      color: #2c4545;
+    }
+    .faq_section-list {
+      margin-left: 43px;
+      margin-right: 43px;
+    }
+    .faq_section-left {
+      float: left;
+      width: 100%;
+      /*     padding: 0 4rem; */
+    }
+    .faq_section-left .tablinks {
+      margin: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .faq_section-left .tablinks svg {
+      fill: #2c4545;
+    }
+    .dots {
+      display: none;
+    }
+  }
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}
+    px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}
+    px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}
+      px;
+      padding-bottom: {{ section.settings.padding_bottom }}
+      px;
+    }
+  }
+{% endstyle %}
+{% schema %}
+  {
+    "name": "Description tabs",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Section padding"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding top",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding bottom",
+        "default": 0
+      },
+      {
+        "type": "header",
+        "content": "Content settings"
+      }, {
+        "type": "text",
+        "id": "heading_text",
+        "label": "Heading text",
+        "default": "Heading"
+      }, {
+        "type": "image_picker",
+        "id": "image_dot-left",
+        "label": "Image"
+      }, {
+        "type": "image_picker",
+        "id": "image_dot-right",
+        "label": "Image"
+      }, {
+        "type": "image_picker",
+        "id": "image_mobile",
+        "label": "Image",
+        "info": "800 x 200px .jpg recommended"
+      }, {
+        "type": "header",
+        "content": "Questions tabs"
+      }, {
+        "type": "text",
+        "id": "question_type1",
+        "label": "Question type"
+      }, {
+        "type": "text",
+        "id": "question_type2",
+        "label": "Question type"
+      }, {
+        "type": "text",
+        "id": "question_type3",
+        "label": "Question type"
+      }, {
+        "type": "text",
+        "id": "question_type4",
+        "label": "Question type"
+      }, {
+        "type": "text",
+        "id": "question_type5",
+        "label": "Question type"
+      }, {
+        "type": "text",
+        "id": "question_type6",
+        "label": "Question type"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Description tabs"
+      }
+    ]
+  }
+{% endschema %}
