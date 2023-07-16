@@ -1,0 +1,180 @@
+{{ "main-collection-list.css" | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.25 | round: 0 }}
+    px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.25 | round: 0 }}
+    px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}
+      px;
+      padding-bottom: {{ section.settings.padding_bottom }}
+      px;
+    }
+  }
+{%- endstyle -%}
+{% if section.blocks.size > 0 %}
+  <div class="heading_text_category">
+    {{ section.settings.heading_text }}
+  </div>
+  <div class="main-collection-list section-{{ section.id }}-padding">
+
+
+    {% comment %}
+    <div class="main-collection__content grid grid__item color-{{ block.id }} {{ block.settings.image_position }}">
+    <div class="main-collection__image">
+    {% assign mobile_image = block.settings.image | default: block.settings.image %}
+    {% render 'image', mobileSrc: mobile_image, desktopSrc: block.settings.image %}
+    </div>
+    <div class="main-collection__title text-color-{{ block.id }}">{{ block.settings.collection.title }}</div>
+    </div>
+    {% endcomment %}
+    <div class="category_container" data-flickity='{ "cellAlign": "left", "contain": true, "pageDots": false}'>
+      {% for block in section.blocks %}
+
+        <div class="category_wrapper">
+       
+          <div class="category_wrapper_image_block">
+            {% assign mobile_image = block.settings.image | default: block.settings.image %}
+            {% render 'image', mobileSrc: mobile_image, desktopSrc: block.settings.image %}
+          </div>
+             
+            </div>
+
+      {% endfor %}
+  
+    </div>
+   
+  </div>
+{% endif %}
+
+{% style %}
+  {% for block in section.blocks %}
+    .color-{{ block.id }}{
+      background-color: {{ block.settings.background_color }}
+      ;
+    }
+    .text-color-{{ block.id }}{
+      color: {{ block.settings.text_color }}
+      ;
+    }
+  {% endfor %}
+{% endstyle %}
+
+{% schema %}
+  {
+    "name": "Main Collection list",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Padding"
+      }, {
+        "type": "range",
+        "id": "padding_top",
+        "label": "Top Padding",
+        "default": 20,
+        "min": 0,
+        "max": 60,
+        "step": 2,
+        "unit": "px"
+      }, {
+        "type": "range",
+        "id": "padding_bottom",
+        "label": "Bottom Padding",
+        "default": 20,
+        "min": 0,
+        "max": 60,
+        "step": 2,
+        "unit": "px"
+      }, {
+        "type": "text",
+        "id": "heading_text",
+        "label": "Heading Text",
+        "default": "Categories"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "carousel-blocks",
+        "name": "Hero Content",
+        "settings": [
+          {
+            "type": "color",
+            "id": "background_color",
+            "label": "background color"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+             "type": "text",
+            "id": "category_title",
+            "label": "Title",
+            "default":"Immediate Delivery"
+          },
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+          },
+          {
+            "type": "color",
+            "id": "text_color",
+            "label": "background color"
+          }, {
+            "type": "header",
+            "content": "Image settings"
+          }, {
+            "type": "select",
+            "id": "image_position",
+            "label": "Image position",
+            "options": [
+              {
+                "value": "align-start justify-start",
+                "label": "Top left"
+              },
+              {
+                "value": "align-start justify-center",
+                "label": "Top center"
+              },
+              {
+                "value": "align-start justify-end",
+                "label": "Top right"
+              },
+              {
+                "value": "align-center justify-start",
+                "label": "Middle left"
+              }, {
+                "value": "align-center justify-center",
+                "label": "Middle center"
+              }, {
+                "value": "align-center justify-end",
+                "label": "Middle right"
+              }, {
+                "value": "align-end justify-start",
+                "label": "Bottom left"
+              }, {
+                "value": "align-end justify-center",
+                "label": "Bottom center"
+              }, {
+                "value": "align-end justify-end",
+                "label": "Bottom right"
+              }
+            ],
+            "default": "align-start justify-start"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Main Collection list"
+      }
+    ]
+  }
+{% endschema %}
