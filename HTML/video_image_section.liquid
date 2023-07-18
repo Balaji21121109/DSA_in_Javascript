@@ -1,0 +1,307 @@
+
+{{ 'image-with-text-overlay-slider.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="{% if section.settings.container_class != blank %}{{ section.settings.container_class }}{% endif %} image-with-text-slider  page-width section-{{ section.id }}-padding padding_mobile">
+   <div class="image-with-text-slider--content" >
+      <div class="donts_heading">
+         {% if section.settings.heading != blank %}
+         <h2 class="image-with-text-slider__heading shop_by_heading left {{ section.settings.heading_size }}{% if section.settings.hide_heading %} hide-heading {% endif %}"
+         {{ block.shopify_attributes }}>
+         {{ section.settings.heading | escape }}
+         </h2>
+        
+         
+         {% endif %}
+      </div>
+      {% if section.settings.description != blank %}
+      <div class="image-with-text-slider__descript center">{{ section.settings.description }}</div>
+      {% endif %}
+      <div class="image-with-text-slider--container-grid main-carousel">
+         {% for block in section.blocks %}
+         <a href="{{ block.settings.url }}" class="image-with-text-slider--grid-item isolate">
+            <div class="image-with-text-slider__media-item {% if block.settings.image != blank %}media media--portrait{% else %}image-with-title__media--placeholder placeholder{% endif %}">
+               {%- if block.settings.image != blank -%}
+               <img
+                  srcset="
+                  {%- if block.settings.image.width >= 165 -%}{{ block.settings.image | image_url: width: 165 }} 165w,{%- endif -%}
+                  {%- if block.settings.image.width >= 360 -%}{{ block.settings.image | image_url: width: 360 }} 360w,{%- endif -%}
+                  {%- if block.settings.image.width >= 535 -%}{{ block.settings.image | image_url: width: 535 }} 535w,{%- endif -%}
+                  {%- if block.settings.image.width >= 750 -%}{{ block.settings.image | image_url: width: 750 }} 750w,{%- endif -%}
+                  {%- if block.settings.image.width >= 1070 -%}{{ block.settings.image | image_url: width: 1070 }} 1070w,{%- endif -%}
+                  {%- if block.settings.image.width >= 1500 -%}{{ block.settings.image | image_url: width: 1500 }} 1500w,{%- endif -%}
+                  {{ block.settings.image | image_url }} {{ block.settings.image.width }}w
+                  "
+                  src="{{ block.settings.image | image_url: width: 1500 }}"
+                  sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+                  alt="{{ block.settings.image.alt | escape }}"
+                  loading="lazy"
+                  width="{{ block.settings.image.width }}"
+                  height="{{ block.settings.image.height }}"
+                  >
+               {%- else -%}
+               {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+               {%- endif -%}
+            </div>
+            <div class="image-with-text-slider__text-item overlay_content {% if section.settings.text_layout %}text-content-position{% endif %} heading_content_padding">
+               {%- if block.settings.heading != blank -%}
+               <div
+               class="image-with-text-slider__block-heading heading_font"
+               {{ block.shopify_attributes }}
+               >
+               {{ block.settings.heading }}
+            </div>
+            {% endif %}
+            {%- if block.settings.description != blank -%}
+            <div class="image-with-text-slider__description">
+               {{ block.settings.description }}
+            </div>
+            {% endif %}
+            {%- if block.settings['description_on-hover'] != blank -%}
+            <div class="image-with-text-slider__description">
+               {{ block.settings['description_on-hover'] }}
+            </div>
+            {% endif %}
+      </div>
+      </a>
+      {% endfor %}
+   </div>
+          <div class="image-with-text-slider__buttons isolate mbl_btns">
+            <button class="js-flickity-button-next--{{ section.id }} flickity-button flickity-prev-next-button  next" type="button" aria-label="Next">
+               <svg class="flickity-button-icon" viewBox="0 0 100 100">
+                  <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" class="arrow" transform="translate(100, 100) rotate(180) "></path>
+               </svg>
+            </button>
+            <button class="js-flickity-button-previous--{{ section.id }} flickity-button flickity-prev-next-button  previous" type="button" aria-label="Previous">
+               <svg class="flickity-button-icon" viewBox="0 0 100 100">
+                  <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" class="arrow"></path>
+               </svg>
+            </button>
+         </div>
+</div>
+</div>
+
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+    let nodeList = document.querySelectorAll('.image-with-text-slider--container-grid');
+    let nextButton =  document.querySelector('.js-flickity-button-next--{{ section.id }}');
+    let previousButton =  document.querySelector('.js-flickity-button-previous--{{ section.id }}');
+    let dataFlickityMobile = { "initialIndex": 1, "prevNextButtons": false, "pageDots": false, "cellAlign":"left", "prevNextButtons": false, "contain": true }
+    let dataFlickityDesktop = { "initialIndex": 1, "prevNextButtons": false, "pageDots": false, "cellAlign":"right", "prevNextButtons": false, "contain": true, "groupCells": 1, "wrapAround": true  }
+    nodeList.forEach(node=>{
+      if(window.innerWidth >= 768){
+          var flkty = new Flickity(node,dataFlickityDesktop);
+        }else{
+          var flkty = new Flickity(node,dataFlickityMobile);
+      }
+       nextButton.addEventListener('click',()=>{
+        flkty.next()
+      })
+      previousButton.addEventListener('click',()=>{
+        flkty.previous()
+      })
+    })
+
+  })
+</script>
+
+{% style %}
+  .shop_by_heading{
+    padding-bottom:20px;
+     font-size: calc(30px + (37 - 30) * (100vw - 375px) / (1440 - 375));
+  }
+ 
+  @media only screen and (max-width:749px){
+    .mbl_btns{
+      padding-bottom:20px;
+    }
+  }
+  @media only screen and (min-width:750px){
+      .mbl_disply{
+    display:none;
+  }
+      .mbl_btns{
+    position:absolute;
+        top: 97px;
+    right:36px;
+
+  }
+  }
+/* transform_btn */
+  .heading_content_padding{
+    padding:0;
+  }
+  .heading_font{
+    font-size: 18px;
+  }
+  .transform_btn{
+    transform: translateY(-140%);
+  }
+  @media only screen and (max-width:749px){
+    .padding_mobile{
+      padding:0 0 0 1rem;
+    }
+    .desk_disply{
+      display:none;
+    }
+  }
+  
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "shop-by-category",
+   "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "container_class",
+      "label":"Parent class",
+      "info": "For Dev purpose (add a parent class to write section specific CSS)"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 52
+    },
+    {
+      "type": "header",
+      "content": "Heading Settings"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "No Dealbreakers"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_heading",
+      "label": "Hide Heading on desktop",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h3",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__3.label"
+        }
+      ],
+      "default": "h2",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy tempor invidunt ut labore et</p>"
+    },
+    {
+    "type": "checkbox",
+    "id": "text_layout",
+    "default":false,
+    "label":"Make text appear below the image"
+    }
+  ],
+  "blocks": [
+     {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link"
+        },
+        {
+          "type": "richtext",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {
+              "value": "h3",
+              "label": "t:sections.all.heading_size.options__1.label"
+            },
+            {
+              "value": "h2",
+              "label": "t:sections.all.heading_size.options__2.label"
+            },
+            {
+              "value": "h1",
+              "label": "t:sections.all.heading_size.options__3.label"
+            }
+          ],
+          "default": "h3",
+          "label": "Heading size"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod"
+        }
+      ]
+     }
+  ],
+  "presets":[
+   {
+      "name": "shop-by-category",
+      "blocks": [
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
