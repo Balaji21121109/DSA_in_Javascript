@@ -1,0 +1,126 @@
+{{ 'flickity.css' | asset_url | stylesheet_tag }}
+{{ 'flickity.js' | asset_url | script_tag }}
+
+<div class="page-width section-{{ section.id }}">
+  <div class="testimonial_main_conatiner">
+    <div class="heading_text_test">
+      <div class="width_heading mobile_hide">
+        <h2>{{ section.settings.heading }} <span class="heading_two">{{section.settings.heading_two}}</span>  <span class="heading_three">{{section.settings.heading_three}}</span></h2>
+      </div>
+    </div>
+    <div class="testimonial_container">
+      <div class="testimonial_wrapper" data-flickity='{ "cellAlign": "left", "contain": true , "autoPlay": true }'>
+        {% for block in section.blocks %}
+          <div class="main_testimonial_container">
+            <div class="desktop_hide heading_mobile">
+              <h2 class="heading_color">{{ section.settings.heading }} <span class="heading_two">{{section.settings.heading_two}}</span> <span class="heading_three">{{section.settings.heading_three}}</span> </h2>
+            </div>
+            <div class="image_container">
+              <img src="{{ block.settings.image_testimonial | image_url }}" alt="image"/>
+              <div class="desktop_hide testimonial_name heading_color">{{ block.settings.name_text }}</div>
+            </div>
+            <div class="testimonial_text_container">
+              {{ block.settings.richtext_testimonial }}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% style %}
+  @media only screen and (min-width:750px) and (max-width:989px){
+     .testimonial_main_conatiner{
+    width: 100%;
+  }
+    .testimonial_main_conatiner{
+      padding:5px;
+    }
+  }
+
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Testimonial",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id":"heading_two",
+      "label":"Heading Two",
+      "default":"OUR"
+    },
+    {
+      "type": "text",
+      "id":"heading_three",
+      "label": "Heading Three",
+      "default": "LOVE"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "block",
+      "name": "block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image_testimonial",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "name_text",
+          "label": "Name"
+        },
+        {
+          "type": "richtext",
+          "id": "richtext_testimonial",
+          "label": "Richtext"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonial"
+    }
+  ]
+}
+{% endschema %}
