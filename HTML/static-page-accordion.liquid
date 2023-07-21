@@ -1,0 +1,944 @@
+{{ 'static-page-accordion.css' | asset_url | stylesheet_tag }}
+
+<div class="static-pages page-width section-{{ section.id }}-padding">
+  <div class="static__page-title">
+    <h2>{{ section.settings.page_title }}</h2>
+  </div>
+
+  <div class="static__collapsible-section">
+    <div class="collapsible-tab-title"></div>
+
+    <div class="collapsible-wrapper">
+      <div class="collapsible__link-tabs">
+        <ul class="quick__link">
+          {% for block in section.blocks %}
+            {% if block.type == 'collapsible-tabs' %}
+              {% if block.settings.quick_link_text != blank %}
+                <li
+                  class="quick__link-tab"
+                  data-link-item
+                  onClick="collapsibleToggle('{{ block.settings.quick_link_id }}')"
+                >
+                  {{ block.settings.quick_link_text }}
+                </li>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="accordian--tab">
+        {% for block in section.blocks %}
+          {% if block.type == 'collapsible-tabs' %}
+            <div class="collapsible__link-tabs-sm">
+              <details class="quick__link-tab-sm">
+                <summary class="faq-detials-sm faq__summary-title-sm">
+                  <div class="quick__link-title-sm">{{ block.settings.quick_link_text }}</div>
+
+                  <div class="collapsible__faq-icon">
+                    <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                    </svg>
+                  </div>
+                </summary>
+
+                <div class="collapsible__content-wrapper">
+                  {% if block.settings.collapsible_heading_1 != blank %}
+                    <details class="collapsible__faq-details">
+                      <summary class="faq-detials flex faq__summary-title">
+                        <div class="faq__accordion-title">
+                          <span>{{ block.settings.collapsible_heading_1 }}</span>
+                        </div>
+
+                        <div>
+                          <svg
+                            width="20"
+                            height="14"
+                            viewBox="0 0 20 14"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                          </svg>
+                        </div>
+                      </summary>
+                      <div class="collapsible__faq-content">
+                        {{ block.settings.collapsible_content_1 }}
+                      </div>
+                    </details>
+                  {% endif %}
+
+                  {% if block.settings.collapsible_heading_2 != blank %}
+                    <details class="collapsible__faq-details">
+                      <summary class="faq-detials flex faq__summary-title">
+                        <div class="faq__accordion-title">
+                          <span>{{ block.settings.collapsible_heading_2 }}</span>
+                        </div>
+
+                        <div>
+                          <svg
+                            width="20"
+                            height="14"
+                            viewBox="0 0 20 14"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                          </svg>
+                        </div>
+                      </summary>
+                      <div class="collapsible__faq-content">
+                        <span class="faq__accordion-content">{{ block.settings.collapsible_content_2 }}</span>
+                      </div>
+                    </details>
+                  {% endif %}
+
+                  {% if block.settings.collapsible_heading_3 != blank %}
+                    <details class="collapsible__faq-details">
+                      <summary class="faq-detials flex faq__summary-title">
+                        <div class="faq__accordion-title">
+                          <span>{{ block.settings.collapsible_heading_3 }}</span>
+                        </div>
+
+                        <div>
+                          <svg
+                            width="20"
+                            height="14"
+                            viewBox="0 0 20 14"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                          </svg>
+                        </div>
+                      </summary>
+                      <div class="collapsible__faq-content">
+                        <span class="faq__accordion-content">{{ block.settings.collapsible_content_3 }}</span>
+                      </div>
+                    </details>
+                  {% endif %}
+
+                  {% if block.settings.collapsible_heading_4 != blank %}
+                    <details class="collapsible__faq-details">
+                      <summary class="faq-detials flex faq__summary-title">
+                        <div class="faq__accordion-title">
+                          <span>{{ block.settings.collapsible_heading_4 }}</span>
+                        </div>
+
+                        <div>
+                          <svg
+                            width="20"
+                            height="14"
+                            viewBox="0 0 20 14"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                          </svg>
+                        </div>
+                      </summary>
+                      <div class="collapsible__faq-content">
+                        <span class="faq__accordion-content">{{ block.settings.collapsible_content_4 }}</span>
+                      </div>
+                    </details>
+                  {% endif %}
+
+                  {% if block.settings.collapsible_heading_5 != blank %}
+                    <details class="collapsible__faq-details">
+                      <summary class="faq-detials flex faq__summary-title">
+                        <div class="faq__accordion-title">
+                          <span>{{ block.settings.collapsible_heading_5 }}</span>
+                        </div>
+
+                        <div>
+                          <svg
+                            width="20"
+                            height="14"
+                            viewBox="0 0 20 14"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                          </svg>
+                        </div>
+                      </summary>
+                      <div class="collapsible__faq-content">
+                        <span class="faq__accordion-content">{{ block.settings.collapsible_content_5 }}</span>
+                      </div>
+                    </details>
+                  {% endif %}
+
+                  {% if block.settings.collapsible_heading_6 != blank %}
+                    <details class="collapsible__faq-details">
+                      <summary class="faq-detials flex faq__summary-title">
+                        <div class="faq__accordion-title">
+                          <span>{{ block.settings.collapsible_heading_6 }}</span>
+                        </div>
+
+                        <div>
+                          <svg
+                            width="20"
+                            height="14"
+                            viewBox="0 0 20 14"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                          </svg>
+                        </div>
+                      </summary>
+                      <div class="collapsible__faq-content">
+                        <span class="faq__accordion-content">{{ block.settings.collapsible_content_6 }}</span>
+                      </div>
+                    </details>
+                  {% endif %}
+
+                  {% if block.settings.collapsible_heading_7 != blank %}
+                    <details class="collapsible__faq-details">
+                      <summary class="faq-detials flex faq__summary-title">
+                        <div class="faq__accordion-title">
+                          <span>{{ block.settings.collapsible_heading_7 }}</span>
+                        </div>
+
+                        <div>
+                          <svg
+                            width="20"
+                            height="14"
+                            viewBox="0 0 20 14"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                          </svg>
+                        </div>
+                      </summary>
+                      <div class="collapsible__faq-content">
+                        <span class="faq__accordion-content">{{ block.settings.collapsible_content_7 }}</span>
+                      </div>
+                    </details>
+                  {% endif %}
+
+                  {% if block.settings.collapsible_heading_8 != blank %}
+                    <details class="collapsible__faq-details">
+                      <summary class="faq-detials flex faq__summary-title">
+                        <div class="faq__accordion-title">
+                          <span>{{ block.settings.collapsible_heading_8 }}</span>
+                        </div>
+
+                        <div>
+                          <svg
+                            width="20"
+                            height="14"
+                            viewBox="0 0 20 14"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                          </svg>
+                        </div>
+                      </summary>
+                      <div class="collapsible__faq-content">
+                        <span class="faq__accordion-content">{{ block.settings.collapsible_content_8 }}</span>
+                      </div>
+                    </details>
+                  {% endif %}
+
+                  {% if block.settings.collapsible_heading_9 != blank %}
+                    <details class="collapsible__faq-details">
+                      <summary class="faq-detials flex faq__summary-title">
+                        <div class="faq__accordion-title">
+                          <span>{{ block.settings.collapsible_heading_9 }}</span>
+                        </div>
+
+                        <div>
+                          <svg
+                            width="20"
+                            height="14"
+                            viewBox="0 0 20 14"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                          </svg>
+                        </div>
+                      </summary>
+                      <div class="collapsible__faq-content">
+                        <span class="faq__accordion-content">{{ block.settings.collapsible_content_9 }}</span>
+                      </div>
+                    </details>
+                  {% endif %}
+
+                  {% if block.settings.collapsible_heading_10 != blank %}
+                    <details class="collapsible__faq-details">
+                      <summary class="faq-detials flex faq__summary-title">
+                        <div class="faq__accordion-title">
+                          <span>{{ block.settings.collapsible_heading_10 }}</span>
+                        </div>
+
+                        <div>
+                          <svg
+                            width="20"
+                            height="14"
+                            viewBox="0 0 20 14"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                          </svg>
+                        </div>
+                      </summary>
+                      <div class="collapsible__faq-content">
+                        <span class="faq__accordion-content">{{ block.settings.collapsible_content_10 }}</span>
+                      </div>
+                    </details>
+                  {% endif %}
+
+                  {% if block.settings.collapsible_heading_11 != blank %}
+                    <details class="collapsible__faq-details">
+                      <summary class="faq-detials flex faq__summary-title">
+                        <div class="faq__accordion-title">
+                          <span>{{ block.settings.collapsible_heading_11 }}</span>
+                        </div>
+
+                        <div>
+                          <svg
+                            width="20"
+                            height="14"
+                            viewBox="0 0 20 14"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                          </svg>
+                        </div>
+                      </summary>
+                      <div class="collapsible__faq-content">
+                        <span class="faq__accordion-content">{{ block.settings.collapsible_content_11 }}</span>
+                      </div>
+                    </details>
+                  {% endif %}
+
+                  {% if block.settings.collapsible_heading_12 != blank %}
+                    <details class="collapsible__faq-details">
+                      <summary class="faq-detials flex faq__summary-title">
+                        <div class="faq__accordion-title">
+                          <span>{{ block.settings.collapsible_heading_12 }}</span>
+                        </div>
+
+                        <div>
+                          <svg
+                            width="20"
+                            height="14"
+                            viewBox="0 0 20 14"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                          </svg>
+                        </div>
+                      </summary>
+                      <div class="collapsible__faq-content">
+                        <span class="faq__accordion-content">{{ block.settings.collapsible_content_12 }}</span>
+                      </div>
+                    </details>
+                  {% endif %}
+                  {% if block.settings.collapsible_heading_13 != blank %}
+                    <details class="collapsible__faq-details">
+                      <summary class="faq-detials flex faq__summary-title">
+                        <div class="faq__accordion-title">
+                          <span>{{ block.settings.collapsible_heading_13 }}</span>
+                        </div>
+
+                        <div>
+                          <svg
+                            width="20"
+                            height="14"
+                            viewBox="0 0 20 14"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                          </svg>
+                        </div>
+                      </summary>
+                      <div class="collapsible__faq-content">
+                        <span class="faq__accordion-content">{{ block.settings.collapsible_content_13 }}</span>
+                      </div>
+                    </details>
+                  {% endif %}
+                  {% if block.settings.collapsible_heading_14 != blank %}
+                    <details class="collapsible__faq-details">
+                      <summary class="faq-detials flex faq__summary-title">
+                        <div class="faq__accordion-title">
+                          <span>{{ block.settings.collapsible_heading_14 }}</span>
+                        </div>
+
+                        <div>
+                          <svg
+                            width="20"
+                            height="14"
+                            viewBox="0 0 20 14"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                          </svg>
+                        </div>
+                      </summary>
+                      <div class="collapsible__faq-content">
+                        <span class="faq__accordion-content">{{ block.settings.collapsible_content_14 }}</span>
+                      </div>
+                    </details>
+                  {% endif %}
+                </div>
+              </details>
+            </div>
+
+            <!-- Accordion For Desktop -->
+            <div
+              class="collapsible__content-wrapper-md"
+              id="{{ block.settings.quick_link_id }}"
+              style="{% if forloop.index != 1 %}display: none{% endif %}"
+            >
+              {% if block.settings.collapsible_heading_1 != blank %}
+                <details class="collapsible__faq-details">
+                  <summary class="faq-detials flex faq__summary-title">
+                    <div class="faq__accordion-title">
+                      <span>{{ block.settings.collapsible_heading_1 }}</span>
+                    </div>
+
+                    <div>
+                      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                      </svg>
+                    </div>
+                  </summary>
+                  <div class="collapsible__faq-content">
+                    <span class="faq__accordion-content">{{ block.settings.collapsible_content_1 }}</span>
+                  </div>
+                </details>
+              {% endif %}
+
+              {% if block.settings.collapsible_heading_2 != blank %}
+                <details class="collapsible__faq-details">
+                  <summary class="faq-detials flex faq__summary-title">
+                    <div class="faq__accordion-title">
+                      <span>{{ block.settings.collapsible_heading_2 }}</span>
+                    </div>
+
+                    <div>
+                      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                      </svg>
+                    </div>
+                  </summary>
+                  <div class="collapsible__faq-content">
+                    <span class="faq__accordion-content">{{ block.settings.collapsible_content_2 }}</span>
+                  </div>
+                </details>
+              {% endif %}
+
+              {% if block.settings.collapsible_heading_3 != blank %}
+                <details class="collapsible__faq-details">
+                  <summary class="faq-detials flex faq__summary-title">
+                    <div class="faq__accordion-title">
+                      <span>{{ block.settings.collapsible_heading_3 }}</span>
+                    </div>
+
+                    <div>
+                      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                      </svg>
+                    </div>
+                  </summary>
+                  <div class="collapsible__faq-content">
+                    <span class="faq__accordion-content">{{ block.settings.collapsible_content_3 }}</span>
+                  </div>
+                </details>
+              {% endif %}
+
+              {% if block.settings.collapsible_heading_4 != blank %}
+                <details class="collapsible__faq-details">
+                  <summary class="faq-detials flex faq__summary-title">
+                    <div class="faq__accordion-title">
+                      <span>{{ block.settings.collapsible_heading_4 }}</span>
+                    </div>
+
+                    <div>
+                      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                      </svg>
+                    </div>
+                  </summary>
+                  <div class="collapsible__faq-content">
+                    <span class="faq__accordion-content">{{ block.settings.collapsible_content_4 }}</span>
+                  </div>
+                </details>
+              {% endif %}
+
+              {% if block.settings.collapsible_heading_5 != blank %}
+                <details class="collapsible__faq-details">
+                  <summary class="faq-detials flex faq__summary-title">
+                    <div class="faq__accordion-title">
+                      <span>{{ block.settings.collapsible_heading_5 }}</span>
+                    </div>
+
+                    <div>
+                      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                      </svg>
+                    </div>
+                  </summary>
+                  <div class="collapsible__faq-content">
+                    <span class="faq__accordion-content">{{ block.settings.collapsible_content_5 }}</span>
+                  </div>
+                </details>
+              {% endif %}
+
+              {% if block.settings.collapsible_heading_6 != blank %}
+                <details class="collapsible__faq-details">
+                  <summary class="faq-detials flex faq__summary-title">
+                    <div class="faq__accordion-title">
+                      <span>{{ block.settings.collapsible_heading_6 }}</span>
+                    </div>
+
+                    <div>
+                      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                      </svg>
+                    </div>
+                  </summary>
+                  <div class="collapsible__faq-content">
+                    <span class="faq__accordion-content">{{ block.settings.collapsible_content_6 }}</span>
+                  </div>
+                </details>
+              {% endif %}
+
+              {% if block.settings.collapsible_heading_7 != blank %}
+                <details class="collapsible__faq-details">
+                  <summary class="faq-detials flex faq__summary-title">
+                    <div class="faq__accordion-title">
+                      <span>{{ block.settings.collapsible_heading_7 }}</span>
+                    </div>
+
+                    <div>
+                      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                      </svg>
+                    </div>
+                  </summary>
+                  <div class="collapsible__faq-content">
+                    <span class="faq__accordion-content">{{ block.settings.collapsible_content_7 }}</span>
+                  </div>
+                </details>
+              {% endif %}
+
+              {% if block.settings.collapsible_heading_8 != blank %}
+                <details class="collapsible__faq-details">
+                  <summary class="faq-detials flex faq__summary-title">
+                    <div class="faq__accordion-title">
+                      <span>{{ block.settings.collapsible_heading_8 }}</span>
+                    </div>
+
+                    <div>
+                      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                      </svg>
+                    </div>
+                  </summary>
+                  <div class="collapsible__faq-content">
+                    <span class="faq__accordion-content">{{ block.settings.collapsible_content_8 }}</span>
+                  </div>
+                </details>
+              {% endif %}
+
+              {% if block.settings.collapsible_heading_9 != blank %}
+                <details class="collapsible__faq-details">
+                  <summary class="faq-detials flex faq__summary-title">
+                    <div class="faq__accordion-title">
+                      <span>{{ block.settings.collapsible_heading_9 }}</span>
+                    </div>
+
+                    <div>
+                      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                      </svg>
+                    </div>
+                  </summary>
+                  <div class="collapsible__faq-content">
+                    <span class="faq__accordion-content">{{ block.settings.collapsible_content_9 }}</span>
+                  </div>
+                </details>
+              {% endif %}
+
+              {% if block.settings.collapsible_heading_10 != blank %}
+                <details class="collapsible__faq-details">
+                  <summary class="faq-detials flex faq__summary-title">
+                    <div class="faq__accordion-title">
+                      <span>{{ block.settings.collapsible_heading_10 }}</span>
+                    </div>
+
+                    <div>
+                      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                      </svg>
+                    </div>
+                  </summary>
+                  <div class="collapsible__faq-content">
+                    <span class="faq__accordion-content">{{ block.settings.collapsible_content_10 }}</span>
+                  </div>
+                </details>
+              {% endif %}
+
+              {% if block.settings.collapsible_heading_11 != blank %}
+                <details class="collapsible__faq-details">
+                  <summary class="faq-detials flex faq__summary-title">
+                    <div class="faq__accordion-title">
+                      <span>{{ block.settings.collapsible_heading_11 }}</span>
+                    </div>
+
+                    <div>
+                      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                      </svg>
+                    </div>
+                  </summary>
+                  <div class="collapsible__faq-content">
+                    <span class="faq__accordion-content">{{ block.settings.collapsible_content_11 }}</span>
+                  </div>
+                </details>
+              {% endif %}
+
+              {% if block.settings.collapsible_heading_12 != blank %}
+                <details class="collapsible__faq-details">
+                  <summary class="faq-detials flex faq__summary-title">
+                    <div class="faq__accordion-title">
+                      <span>{{ block.settings.collapsible_heading_12 }}</span>
+                    </div>
+
+                    <div>
+                      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                      </svg>
+                    </div>
+                  </summary>
+                  <div class="collapsible__faq-content">
+                    <span class="faq__accordion-content">{{ block.settings.collapsible_content_12 }}</span>
+                  </div>
+                </details>
+              {% endif %}
+
+              {% if block.settings.collapsible_heading_13 != blank %}
+                <details class="collapsible__faq-details">
+                  <summary class="faq-detials flex faq__summary-title">
+                    <div class="faq__accordion-title">
+                      <span>{{ block.settings.collapsible_heading_13 }}</span>
+                    </div>
+
+                    <div>
+                      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                      </svg>
+                    </div>
+                  </summary>
+                  <div class="collapsible__faq-content">
+                    <span class="faq__accordion-content">{{ block.settings.collapsible_content_13 }}</span>
+                  </div>
+                </details>
+              {% endif %}
+
+              {% if block.settings.collapsible_heading_14 != blank %}
+                <details class="collapsible__faq-details">
+                  <summary class="faq-detials flex faq__summary-title">
+                    <div class="faq__accordion-title">
+                      <span>{{ block.settings.collapsible_heading_14 }}</span>
+                    </div>
+
+                    <div>
+                      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.35 0L10 8.65317L17.65 0L20 2.66397L10 14L0 2.66397L2.35 0Z" fill="#CBBB75"/>
+                      </svg>
+                    </div>
+                  </summary>
+                  <div class="collapsible__faq-content">
+                    <span class="faq__accordion-content">{{ block.settings.collapsible_content_14 }}</span>
+                  </div>
+                </details>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  @media only screen and (max-width:749px) {
+    .section-{{ section.id }}-padding {
+      padding-left:42px;
+      padding-right:42px;
+    }
+  }
+{%- endstyle -%}
+
+{% schema %}
+  {
+  "name": "Static Pages Accordion",
+  "settings": [
+    {
+      "type": "text",
+      "id": "page_title",
+      "label": "Page Title"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collapsible-tabs",
+      "name": "Collapsible Tabs",
+      "settings": [
+        {
+          "type": "text",
+          "label": "Quick Link Text",
+          "id": "quick_link_text"
+        },
+        {
+          "type": "text",
+          "label": "Quicks link ID",
+          "id": "quick_link_id"
+        },
+        {
+          "type": "header",
+          "content": "Collapisble Row-1"
+        },
+        {
+          "type": "text",
+          "id": "collapsible_heading_1",
+          "label": "Collapsible Heading 1"
+        },
+        {
+          "type": "richtext",
+          "id": "collapsible_content_1",
+          "label": "Collapsible Content 1"
+        },
+        {
+          "type": "header",
+          "content": "Collapisble Row-2"
+        },
+        {
+          "type": "text",
+          "id": "collapsible_heading_2",
+          "label": "Collapsible Heading 2"
+        },
+        {
+          "type": "richtext",
+          "id": "collapsible_content_2",
+          "label": "Collapsible Content 2"
+        },
+        {
+          "type": "header",
+          "content": "Collapisble Row-3"
+        },
+        {
+          "type": "text",
+          "id": "collapsible_heading_3",
+          "label": "Collapsible Heading 3"
+        },
+        {
+          "type": "richtext",
+          "id": "collapsible_content_3",
+          "label": "Collapsible Content 3"
+        },
+        {
+          "type": "header",
+          "content": "Collapisble Row-4"
+        },
+        {
+          "type": "text",
+          "id": "collapsible_heading_4",
+          "label": "Collapsible Heading 4"
+        },
+        {
+          "type": "richtext",
+          "id": "collapsible_content_4",
+          "label": "Collapsible Content 4"
+        },
+        {
+          "type": "header",
+          "content": "Collapisble Row-5"
+        },
+        {
+          "type": "text",
+          "id": "collapsible_heading_5",
+          "label": "Collapsible Heading 5"
+        },
+        {
+          "type": "richtext",
+          "id": "collapsible_content_5",
+          "label": "Collapsible Content 5"
+        },
+        {
+          "type": "header",
+          "content": "Collapisble Row-6"
+        },
+        {
+          "type": "text",
+          "id": "collapsible_heading_6",
+          "label": "Collapsible Heading 6"
+        },
+        {
+          "type": "richtext",
+          "id": "collapsible_content_6",
+          "label": "Collapsible Content 6"
+        },
+        {
+          "type": "header",
+          "content": "Collapisble Row-7"
+        },
+        {
+          "type": "text",
+          "id": "collapsible_heading_7",
+          "label": "Collapsible Heading 7"
+        },
+        {
+          "type": "richtext",
+          "id": "collapsible_content_7",
+          "label": "Collapsible Content 7"
+        },
+        {
+          "type": "header",
+          "content": "Collapisble Row-8"
+        },
+        {
+          "type": "text",
+          "id": "collapsible_heading_8",
+          "label": "Collapsible Heading 8"
+        },
+        {
+          "type": "richtext",
+          "id": "collapsible_content_8",
+          "label": "Collapsible Content 8"
+        },
+        {
+          "type": "header",
+          "content": "Collapisble Row-9"
+        },
+        {
+          "type": "text",
+          "id": "collapsible_heading_9",
+          "label": "Collapsible Heading 9"
+        },
+        {
+          "type": "richtext",
+          "id": "collapsible_content_9",
+          "label": "Collapsible Content 9"
+        },
+        {
+          "type": "header",
+          "content": "Collapisble Row-10"
+        },
+        {
+          "type": "text",
+          "id": "collapsible_heading_10",
+          "label": "Collapsible Heading 10"
+        },
+        {
+          "type": "richtext",
+          "id": "collapsible_content_10",
+          "label": "Collapsible Content 10"
+        },
+        {
+          "type": "header",
+          "content": "Collapisble Row-11"
+        },
+        {
+          "type": "text",
+          "id": "collapsible_heading_11",
+          "label": "Collapsible Heading 11"
+        },
+        {
+          "type": "richtext",
+          "id": "collapsible_content_11",
+          "label": "Collapsible Content 11"
+        },
+        {
+          "type": "header",
+          "content": "Collapisble Row-12"
+        },
+        {
+          "type": "text",
+          "id": "collapsible_heading_12",
+          "label": "Collapsible Heading 12"
+        },
+        {
+          "type": "richtext",
+          "id": "collapsible_content_12",
+          "label": "Collapsible Content 12"
+        },
+        {
+          "type": "text",
+          "id": "collapsible_heading_13",
+          "label": "Collapsible Heading 13"
+        },
+        {
+          "type": "richtext",
+          "id": "collapsible_content_13",
+          "label": "Collapsible Content 13"
+        },
+        {
+          "type": "text",
+          "id": "collapsible_heading_14",
+          "label": "Collapsible Heading 14"
+        },
+        {
+          "type": "richtext",
+          "id": "collapsible_content_14",
+          "label": "Collapsible Content 14"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Static Pages Accordion"
+    }
+  ]
+}
+{% endschema %}
