@@ -1,0 +1,56 @@
+<div class="section">
+ 
+  <div class="upselling_products ">
+    <div class="new_category_heaidng dots-container upsell_product_mbl_container">
+      <div class="dots dots_recomendation">
+        <span class="span--dots span-dot_1"></span>
+        <span class="span--dots span-dot_2"></span>
+        <span class="span--dots span-dot_2"></span>
+      </div>
+      <div class="main_heading_wrapper">
+        <p class="heaing_text_new_category pop-wrapper_container metafield_collection_title recomendations_heading addons_heading_mbl">SUGGESTED ADD-ONS</p>
+      </div>
+      <div class="dots dots_recomendation">
+        <span class="span--dots span-dot_2"></span>
+        <span class="span--dots span-dot_2"></span>
+        <span class="span--dots span-dot_1"></span>
+      </div>
+    </div>
+  
+    <div class="upselling_wrapper">
+      {% render 'cart-drawer-upsell' , product: product %}
+    </div>
+  </div>
+</div>
+
+{% style %}
+@media only screen and (min-width:750px){
+  .upselling_wrapper{
+    padding-top:55px;
+  }
+}
+.addons_heading_mbl{
+   font-size: 12px
+}
+{% endstyle %}
+
+{% schema %}
+  {
+    "name": "product-upselling",
+    "settings": [
+      
+    ],
+     "presets":[
+       {
+         "name":"product-upselling"
+       }
+     ]
+    
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
