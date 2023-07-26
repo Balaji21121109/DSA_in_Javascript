@@ -1,0 +1,59 @@
+<div class="video_container__video section-{{ section.id }}">
+  <div class="video-container__video-element">
+    <div class="video_item">
+      <h1>Video</h1>
+      {% if section.settings.product_description_video contains 'youtube.com/watch' %}
+        {% assign video_id = section.settings.product_description_video | split: 'v=' | last %}
+        {% assign youtube_embed_url = "https://www.youtube.com/embed/" | append: video_id %}
+        <iframe src="{{ youtube_embed_url }}" frameborder="0" allowfullscreen autoplay></iframe>
+      {% elsif section.settings.product_description_video contains 'vimeo.com/' %}
+        {% assign video_id = section.settings.product_description_video | split: '/' | last %}
+        {% assign vimeo_embed_url = "https://player.vimeo.com/video/" | append: video_id %}
+        <iframe src="{{ vimeo_embed_url }}" frameborder="0" allowfullscreen autoplay></iframe>
+      {% else %}
+        {% comment %} Show CDN video if neither YouTube nor Vimeo video is present {% endcomment %}
+        {% if section.settings.cdn_video_url != "" %}
+          <video src="{{ section.settings.cdn_video_url }}" controls autoplay></video>
+        {% else %}
+          <p>No video URL provided.</p>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+
+
+
+{% schema %}
+{
+  "name": "youtube-section",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image Settings"
+    },
+    {
+      "type": "video_url",
+      "id": "product_description_video",
+      "label": "Product description video",
+      "accept": ["youtube", "vimeo"]
+    },
+    {
+      "type": "text",
+      "id": "cdn_video_url",
+      "label": "Custom CDN video URL",
+      "default": "https://cdn.shopify.com/videos/c/o/v/06e64c9807ac4e9b821d1a68effc7fc7.mp4",
+      "info": "If no YouTube or Vimeo video is provided, this CDN link will be used as the video source."
+    }
+  ],
+  "presets": [
+    {
+      "name": "youtube-section"
+    }
+  ]
+}
+
+{% endschema %}
