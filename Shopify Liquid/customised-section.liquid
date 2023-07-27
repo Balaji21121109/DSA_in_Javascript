@@ -1,0 +1,176 @@
+{{ 'collection-tabs.css' | asset_url | stylesheet_tag }}
+{%- if section.settings.enable_quick_add -%}
+  <link
+    rel="stylesheet"
+    href="{{ 'quick-add.css' | asset_url }}"
+    media="print"
+    onload="this.media='all'">
+  <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+<div class="collection_tabs_container customised_container section-{{ section.id }}">
+  <div class="collection_tab_title customised_title">
+    <h2>{{ section.settings.heading_text }}</h2>
+  </div>
+  <h1 class="heading-with-circles customised_line">
+    <span class="circle"></span>
+    <hr>
+    <span class="circle"></span>
+  </h1>
+  <div>{{ section.settings.subheading }}</div>
+  <div class="collection_tab_contents customised_tab_content">
+    {% assign product_limit = section.settings.product_limit %}
+    {%- for block in section.blocks -%}
+      <div class="collection_tab_contents customised_product_wrapper {% if forloop.first %} is--active {% endif %}">
+        <div class="collection-tabs__slider customised_slider desktop_collection_tab grid--2-col grid--3-col-tablet grid--4-col-desktop">
+          {% if block.settings.collection_heading != blank and block.settings.collection_id != blank %}
+            {%- for product in collections[block.settings.collection_id].products limit: product_limit -%}
+              <div class="collection-tabs__slideritem collection_tab_slider customised_slider_item">
+                {% render 'customised-product-card'
+                 , card_product: product,
+                 media_aspect_ratio: section.settings.image_ratio,
+                 show_secondary_image: section.settings.show_secondary_image,
+                 show_vendor: section.settings.show_vendor,
+                 show_rating: section.settings.show_rating,
+                 show_quick_add: section.settings.enable_quick_add,
+                 section_id: section.id %}
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+        <div class="collection-tabs__slider customised_slider mobile_collection_tab grid--2-col grid--4-col-desktop">
+          {% if block.settings.collection_heading != blank and block.settings.collection_id != blank %}
+            {%- for product in collections[block.settings.collection_id].products
+ limit: section.settings.product_limit_mobile
+ -%}
+              <div class="collection-tabs__slideritem collection_tab_slider">
+                {% render 'customised-product-card'
+                 , card_product: product,
+                 media_aspect_ratio: section.settings.image_ratio,
+                 show_secondary_image: section.settings.show_secondary_image,
+                 show_vendor: section.settings.show_vendor,
+                 show_rating: section.settings.show_rating,
+                 show_quick_add: section.settings.enable_quick_add,
+                 section_id: section.id %}
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+        <div class="link-center center customised_link">
+          <a class="button view_more add_to_cart_button btn outline collection_tabs_view_more" href="{{block.settings.collection_id.url  }}">VIEW MORE</a>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% style %}
+  .section-{{ section.id }}{
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}
+    px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}
+    px;
+    background: {{ section.settings.background_color}}
+    ;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}{
+      padding-top: {{ section.settings.padding_top }}
+      px;
+      padding-bottom: {{ section.settings.padding_bottom }}
+      px;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+  {
+    "name": "Customised Section",
+    "tag": "section",
+    "class": "homepage-section",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "padding_top",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "padding_bottom",
+        "default": 36
+      },
+      {
+        "type": "text",
+        "id": "heading_text",
+        "label": "Heading Product"
+      }, {
+        "type": "text",
+        "id": "subheading",
+        "label": "Subheading"
+      }, {
+        "type": "range",
+        "id": "product_limit",
+        "min": 1,
+        "max": 20,
+        "step": 1,
+        "label": "Product limit",
+        "default": 4
+      }, {
+        "type": "range",
+        "id": "product_limit_mobile",
+        "min": 1,
+        "max": 20,
+        "step": 1,
+        "label": "Product limit mobile",
+        "default": 1
+      }, {
+        "type": "checkbox",
+        "id": "enable_quick_add",
+        "default": true,
+        "label": "Enable Quick Add"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "custom-block",
+        "type": "custom-block",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "collection_image_logo",
+            "label": "Collection logo"
+          }, {
+            "type": "text",
+            "id": "collection_heading",
+            "label": "Collection heading"
+          }, {
+            "type": "collection",
+            "id": "collection_id",
+            "label": "Collection"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Customised Section"
+      }
+    ]
+  }
+{% endschema %}
