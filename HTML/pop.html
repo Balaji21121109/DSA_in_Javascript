@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+body.blur {
+  overflow: hidden; /* Prevent scrolling when the popup is open */
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+}
+
+.popup.show {
+  display: block;
+}
+
+
+
+    </style>
+</head>
+<body>
+    <div class="content">
+        <!-- Your main content here -->
+        <button onclick="openPopup()">Open Popup</button>
+      </div>
+    
+      <div id="popup" class="popup">
+        <div class="popup-content">
+          <!-- Popup content here -->
+          <button onclick="closePopup()">Close Popup</button>
+        </div>
+      </div>
+</body>
+</html>
+<script>
+function openPopup() {
+  const body = document.querySelector('body');
+  const popup = document.getElementById('popup');
+
+  body.classList.add('blur'); // Add blur class to the body to prevent scrolling
+  popup.classList.add('show'); // Show the popup
+}
+
+function closePopup() {
+  const body = document.querySelector('body');
+  const popup = document.getElementById('popup');
+
+  body.classList.remove('blur'); // Remove blur class to re-enable scrolling
+  popup.classList.remove('show'); // Hide the popup
+}
+
+
+</script>
