@@ -1,0 +1,60 @@
+<div class="page-width">
+  <div class="meta_collections_container">
+    <div class="meta_collections_wrapper">
+
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "metafield_collections",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading_text",
+        "label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label",
+        "info": "Button label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Paste a link"
+      },
+      {
+        "type": "header",
+        "content": "t:sections.all.padding.section_padding_heading"
+      },
+       {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 200,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 36
+      }, {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 200,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 36
+      }
+    ],
+    "presets": [
+      {
+        "name": "metafield_collections"
+      }
+    ]
+  }
+{% endschema %}
